@@ -5,14 +5,38 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Capstone.Models;
+using Capstone.Data;
+using Microsoft.AspNet.Identity;
 
 namespace Capstone.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
-            return View();
+            if (User.IsInRole("Company Account"))
+            {
+                var completeCheck = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
+                if(completeCheck.setupComplete == true)
+                {
+                    return RedirectToAction("Index", "CompanyHome", new { id = completeCheck.Id});
+                }
+                else
+                {
+                    return RedirectToAction("Index", "CreateSite", new { id = completeCheck.Id });
+                }
+            }
+            else
+            {
+                return View();
+
+            }
         }
 
         public IActionResult About()

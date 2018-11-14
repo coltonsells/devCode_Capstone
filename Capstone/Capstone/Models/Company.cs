@@ -13,9 +13,14 @@ namespace Capstone.Models
         public string Id { get; set; }
         public string CreatorId { get; set; }
         public string Name { get; set; }
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
         public string Lat { get; set; }
         public string Long { get; set; }
         public string Twitter { get; set; }
         public string Theme { get; set; }
+        public bool setupComplete { get; set; }
     }
 }

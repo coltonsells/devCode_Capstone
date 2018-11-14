@@ -4,14 +4,16 @@ using Capstone.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Capstone.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181114170619_added check complete bool")]
+    partial class addedcheckcompletebool
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,6 @@ namespace Capstone.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("City");
-
                     b.Property<string>("CreatorId");
 
                     b.Property<string>("Lat");
@@ -58,15 +58,9 @@ namespace Capstone.Data.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("State");
-
-                    b.Property<string>("Street");
-
                     b.Property<string>("Theme");
 
                     b.Property<string>("Twitter");
-
-                    b.Property<string>("Zip");
 
                     b.Property<bool>("setupComplete");
 

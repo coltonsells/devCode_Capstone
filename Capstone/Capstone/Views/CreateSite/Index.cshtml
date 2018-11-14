@@ -1,0 +1,32 @@
+﻿@model Capstone.Models.Company
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <div id="compName">
+        <h3>First lets get some basic information for your company</h3>
+        <p>
+            What is your company's name?
+        </p>
+        <input asp-for="@Model.Name" class="form-control" />
+        <button id="compNameCont" class="btn btn-primary">Continue</button>
+    </div>
+    <div id="compAddress">
+        <p>
+            Where is your company located?
+        <p>
+            <label asp-for="@Model.Street" class="control-label"></label>
+            <input asp-for="@Model.Street" class="form-control" />
+            <label asp-for="@Model.City" class="control-label"></label>
+            <input asp-for="@Model.City" class="form-control" />
+            <label asp-for="@Model.State" class="control-label"></label>
+            <input asp-for="@Model.State" class="form-control" />
+            <label asp-for="@Model.Zip" class="control-label"></label>
+            <input asp-for="@Model.Zip" class="form-control" />
+        </p>
+    </div>
+</div>
