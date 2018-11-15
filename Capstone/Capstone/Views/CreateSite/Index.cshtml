@@ -3,8 +3,14 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
-
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <h2>Index</h2>
+<style>
+    html{
+        scroll-behavior: smooth;
+    }
+</style>
+@using (Html.BeginForm()){
 
 <div class="container">
     <div id="compName">
@@ -12,10 +18,12 @@
         <p>
             What is your company's name?
         </p>
-        <input asp-for="@Model.Name" class="form-control" />
-        <button id="compNameCont" class="btn btn-primary">Continue</button>
+        <input asp-for="@Model.Name" class="form-control" /><br />
+        <button id="compNameCont"  type="button" class="btn btn-primary" onclick='location.href="#compAddress"'>Continue</button>
     </div>
-    <div id="compAddress">
+  
+
+    <div id="compAddress" style="display:none">
         <p>
             Where is your company located?
         <p>
@@ -26,7 +34,53 @@
             <label asp-for="@Model.State" class="control-label"></label>
             <input asp-for="@Model.State" class="form-control" />
             <label asp-for="@Model.Zip" class="control-label"></label>
-            <input asp-for="@Model.Zip" class="form-control" />
+            <input asp-for="@Model.Zip" class="form-control" /><br />
+            <button id="compAddressCont" type="button" class="btn btn-primary" onclick='location.href="#compType"'>Continue</button>
+            <button id="goBackName" type="button" class="btn btn-primary" onclick='location.href="#compName"'>Go Back</button>
         </p>
     </div>
+  
+    <div id="compType" style="display:none">
+        <p>
+            What type of company is it?
+        </p>
+        <div>
+            @Html.DropDownListFor(model => model.Type, new List<SelectListItem>
+       {
+           new SelectListItem{Text = "--Select--", Value = null},
+           new SelectListItem{Text = "Retail", Value = "Retail"},
+           new SelectListItem{Text = "Service", Value = "Service" },
+           new SelectListItem{Text = "Entertainment", Value = "Entertainment" },
+           new SelectListItem{Text = "Maunfacturing", Value = "Manufacturing" },
+       })
+        </div>
+        
+       <button id="goBackAddress" type="button" class="btn btn-primary" onclick='location.href="#compAddress"'>Go Back</button>
+       <button id="finished" type="submit" class="btn btn-primary">Done</button>
+    </div>
 </div>
+}
+
+<script>
+    $("#compNameCont").click(function () {
+        $("#compName").hide();
+        $("#compAddress").show();
+    });
+
+    $("#goBackName").click(function () {
+        $("#compAddress").hide();
+        $("#compName").show();
+    });
+
+    $("#compAddressCont").click(function () {
+        $("#compAddress").hide();
+        $("#compType").show();
+    });
+
+    $("#goBackAddress").click(function () {
+        $("#compType").hide();
+        $("#compAddress").show();
+    });
+
+
+</script>

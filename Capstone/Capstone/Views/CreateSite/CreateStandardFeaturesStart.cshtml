@@ -1,0 +1,67 @@
+﻿@model Capstone.Models.StandardFeatures
+
+@{
+    ViewData["Title"] = "CreateStandardFeaturesStart";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<h2>CreateStandardFeatures</h2>
+
+<h4>StandardFeatures</h4>
+<hr />
+@using (Html.BeginForm("CreateStandardFeaturesStart", "CreateSite", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="CreateStandardFeatures">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div id="intro">
+                    <h1>Let's Begin</h1>
+                    <p>
+                        first we need to decide what pages you want for your site. Let's start with the standard pages first. A home page is automatically included, but there are two
+                        other pages as well. First is the About page. This is mainly used to inform your viewers a little more about your company and the people that make it up. This page
+                        can hold up to 9 elements of both Text and pictures as well. Special features can also be added later the bottom of the page. Would you like include an About page?
+                    </p>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="About" /> @Html.DisplayNameFor(model => model.About)
+                    </label>
+                </div>
+                <div>
+                    <p>
+                        Next we need to decide on a Contact page. Contact pages are useful for givin your viewers one or more methods of contacting you for questions or comments. The standard
+                        Account only allows for basic information to be display in one element, however premium users can get more features added to this page. Would you like a contact page?
+                    </p>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="Contact" /> @Html.DisplayNameFor(model => model.Contact)
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    class="form-group>
+                    <p>
+                        Finally, lets upload an image to your home page. This isn't necessary as we do provide a default image, however it is highly recommended. Multiple pictures can be added
+                        later but for now lets just stick with your main image.
+                    </p>
+                    <input type="file" name="file" value="file" class="btn btn-default" />
+
+
+
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
