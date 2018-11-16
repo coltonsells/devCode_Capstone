@@ -10,11 +10,24 @@ namespace Capstone.Controllers
     public class CompanyHomeController : Controller
     {
         // GET: CompanyHome
+        public IActionResult InitialSetup()
+        {
+            ViewData["Theme"] = "Bootstrap.css";
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult InitialSetup(IFormCollection form)
+        {
+            return View();
+        }
+
         public ActionResult Index(string id)
         {
             ViewData["Theme"] = "Cerulean.css";
             return View();
         }
+       
 
         // GET: CompanyHome/Details/5
         public ActionResult Details(int id)

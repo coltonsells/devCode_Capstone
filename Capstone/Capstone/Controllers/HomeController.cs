@@ -23,7 +23,7 @@ namespace Capstone.Controllers
             if (User.IsInRole("Company Account"))
             {
                 var completeCheck = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
-                if(completeCheck.setupComplete == true)
+                if(completeCheck.SetupComplete == true)
                 {
                     return RedirectToAction("Index", "CompanyHome", new { id = completeCheck.Id});
                 }
@@ -38,6 +38,8 @@ namespace Capstone.Controllers
 
             }
         }
+
+        
 
         public IActionResult About()
         {

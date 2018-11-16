@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Capstone.Data.Migrations
+namespace Capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181114170619_added check complete bool")]
-    partial class addedcheckcompletebool
+    [Migration("20181115173100_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,11 +32,17 @@ namespace Capstone.Data.Migrations
 
                     b.Property<string>("Paragraph1");
 
+                    b.Property<bool>("Paragraph1Check");
+
+                    b.Property<string>("Paragraph2");
+
+                    b.Property<bool>("Paragraph2Check");
+
+                    b.Property<string>("Paragraph3");
+
+                    b.Property<bool>("Paragraph3Check");
+
                     b.Property<bool>("Twitter");
-
-                    b.Property<string>("paragraph2");
-
-                    b.Property<string>("paragraph3");
 
                     b.HasKey("Id");
 
@@ -50,6 +56,8 @@ namespace Capstone.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("City");
+
                     b.Property<string>("CreatorId");
 
                     b.Property<string>("Lat");
@@ -58,11 +66,19 @@ namespace Capstone.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<bool>("SetupComplete");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("Street");
+
                     b.Property<string>("Theme");
 
                     b.Property<string>("Twitter");
 
-                    b.Property<bool>("setupComplete");
+                    b.Property<string>("Type");
+
+                    b.Property<string>("Zip");
 
                     b.HasKey("Id");
 
@@ -80,11 +96,17 @@ namespace Capstone.Data.Migrations
 
                     b.Property<string>("Paragraph1");
 
+                    b.Property<bool>("Paragraph1Check");
+
+                    b.Property<string>("Paragraph2");
+
+                    b.Property<bool>("Paragraph2Check");
+
+                    b.Property<string>("Paragraph3");
+
+                    b.Property<bool>("Paragraph3Check");
+
                     b.Property<bool>("Twitter");
-
-                    b.Property<string>("paragraph2");
-
-                    b.Property<string>("paragraph3");
 
                     b.HasKey("Id");
 
@@ -120,9 +142,21 @@ namespace Capstone.Data.Migrations
 
                     b.Property<string>("Paragraph1");
 
+                    b.Property<bool>("Paragraph1Check");
+
+                    b.Property<string>("Paragraph1Type");
+
                     b.Property<string>("Paragraph2");
 
+                    b.Property<bool>("Paragraph2Check");
+
+                    b.Property<string>("Paragraph2Type");
+
                     b.Property<string>("Paragraph3");
+
+                    b.Property<bool>("Paragraph3Check");
+
+                    b.Property<string>("Paragraph3Type");
 
                     b.Property<bool>("Twitter");
 
@@ -135,6 +169,8 @@ namespace Capstone.Data.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<byte[]>("ImageByte");
 
                     b.Property<string>("ImagePath");
 

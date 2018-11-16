@@ -7,21 +7,16 @@ using System.Threading.Tasks;
 
 namespace Capstone.Models
 {
-    public class About
+    public class HomeJumbo
     {
         [Key]
         public string Id { get; set; }
         [ForeignKey("company")]
         public string CompanyId { get; set; }
         public Company company { get; set; }
-        public bool Paragraph1Check { get; set; }
-        public bool Paragraph2Check { get; set; }
-        public bool Paragraph3Check { get; set; }
-        public string Paragraph1 { get; set; }
-        public string Paragraph2 { get; set; }
-        public string Paragraph3 { get; set; }
-        public bool Maps { get; set; }
-        public bool Twitter { get; set; }
-
+        public string Text { get; set; }
+        public string TextAlign { get; set; }
+        public string TextFont { get; set; }
+        public string TextColor { get; set; }
     }
 }

@@ -4,16 +4,14 @@ using Capstone.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Capstone.Data.Migrations
+namespace Capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181114154430_erd diagram upload")]
-    partial class erddiagramupload
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,11 +30,17 @@ namespace Capstone.Data.Migrations
 
                     b.Property<string>("Paragraph1");
 
+                    b.Property<bool>("Paragraph1Check");
+
+                    b.Property<string>("Paragraph2");
+
+                    b.Property<bool>("Paragraph2Check");
+
+                    b.Property<string>("Paragraph3");
+
+                    b.Property<bool>("Paragraph3Check");
+
                     b.Property<bool>("Twitter");
-
-                    b.Property<string>("paragraph2");
-
-                    b.Property<string>("paragraph3");
 
                     b.HasKey("Id");
 
@@ -50,6 +54,8 @@ namespace Capstone.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("City");
+
                     b.Property<string>("CreatorId");
 
                     b.Property<string>("Lat");
@@ -58,9 +64,19 @@ namespace Capstone.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<bool>("SetupComplete");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("Street");
+
                     b.Property<string>("Theme");
 
                     b.Property<string>("Twitter");
+
+                    b.Property<string>("Type");
+
+                    b.Property<string>("Zip");
 
                     b.HasKey("Id");
 
@@ -78,11 +94,17 @@ namespace Capstone.Data.Migrations
 
                     b.Property<string>("Paragraph1");
 
+                    b.Property<bool>("Paragraph1Check");
+
+                    b.Property<string>("Paragraph2");
+
+                    b.Property<bool>("Paragraph2Check");
+
+                    b.Property<string>("Paragraph3");
+
+                    b.Property<bool>("Paragraph3Check");
+
                     b.Property<bool>("Twitter");
-
-                    b.Property<string>("paragraph2");
-
-                    b.Property<string>("paragraph3");
 
                     b.HasKey("Id");
 
@@ -102,6 +124,8 @@ namespace Capstone.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Customers");
                 });
 
@@ -116,9 +140,21 @@ namespace Capstone.Data.Migrations
 
                     b.Property<string>("Paragraph1");
 
+                    b.Property<bool>("Paragraph1Check");
+
+                    b.Property<string>("Paragraph1Type");
+
                     b.Property<string>("Paragraph2");
 
+                    b.Property<bool>("Paragraph2Check");
+
+                    b.Property<string>("Paragraph2Type");
+
                     b.Property<string>("Paragraph3");
+
+                    b.Property<bool>("Paragraph3Check");
+
+                    b.Property<string>("Paragraph3Type");
 
                     b.Property<bool>("Twitter");
 
@@ -131,6 +167,8 @@ namespace Capstone.Data.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<byte[]>("ImageByte");
 
                     b.Property<string>("ImagePath");
 
@@ -237,6 +275,9 @@ namespace Capstone.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -276,6 +317,8 @@ namespace Capstone.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -344,6 +387,17 @@ namespace Capstone.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Capstone.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("name");
+
+                    b.ToTable("ApplicationUser");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
             modelBuilder.Entity("Capstone.Models.About", b =>
                 {
                     b.HasOne("Capstone.Models.Company", "company")
@@ -356,6 +410,13 @@ namespace Capstone.Data.Migrations
                     b.HasOne("Capstone.Models.Company", "company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
+                });
+
+            modelBuilder.Entity("Capstone.Models.Customer", b =>
+                {
+                    b.HasOne("Capstone.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Capstone.Models.Image", b =>

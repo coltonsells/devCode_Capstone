@@ -22,6 +22,8 @@ namespace Capstone.Models
         public string Twitter { get; set; }
         public string Theme { get; set; }
         public string Type { get; set; }
-        public bool setupComplete { get; set; }
+        public bool About { get; set; }
+        public bool Contact { get; set; }
+        public bool SetupComplete { get; set; }
     }
 }

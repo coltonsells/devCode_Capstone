@@ -14,9 +14,12 @@ namespace Capstone.Models
         [ForeignKey("company")]
         public string CompanyId { get; set; }
         public Company company { get; set; }
+        public bool Paragraph1Check { get; set; }
+        public bool Paragraph2Check { get; set; }
+        public bool Paragraph3Check { get; set; }
         public string Paragraph1 { get; set; }
-        public string paragraph2 { get; set; }
-        public string paragraph3 { get; set; }
+        public string Paragraph2 { get; set; }
+        public string Paragraph3 { get; set; }
         public bool Maps { get; set; }
         public bool Twitter { get; set; }
     }

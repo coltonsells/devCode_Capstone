@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "PremiumCheck";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<h2>PremiumCheck</h2>
+
+<div class="container">
+    <div>
+        <h1>
+            Premium
+        </h1>
+        <p>Premium features allow you to add even more customization to your website</p>
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("PremiumFeatures", "CreateSite")'">GO PREMIUM</button>
+        <button tpye="button" class="btn btn-primary" onclick="location.href ='@Url.Action("InitialSetup", "CompanyHome")'">no thanks</button>
+    </div>
+</div>

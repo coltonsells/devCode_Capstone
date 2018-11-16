@@ -39,6 +39,15 @@ namespace Capstone.Controllers
             company.Zip = form["Zip"];
             company.Type = form["Type"];
             _context.SaveChanges();
+            Home newHome = new Home()
+            {
+                CompanyId = company.Id,
+                Paragraph1Check = false,
+                Paragraph2Check = false,
+                Paragraph3Check = false
+            };
+            _context.Add(newHome);
+            _context.SaveChanges();
             return RedirectToAction("CreateStandardFeaturesStart");
         }
 
@@ -50,16 +59,82 @@ namespace Capstone.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateStandardFeaturesStart(IFormCollection form, IFormFile file)
+        public async Task<ActionResult> CreateStandardFeaturesStart(StandardFeatures features, IFormFile file)
         {
-            var comp = _context.Companies.Where(x => x.Id == (string)ViewData["CompanyId"]).FirstOrDefault();
-            Image img = new Image();
-            img = await StorePicture(img, comp, file);
-
-
+             
+            var comp = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
+            bool AboutCheck = features.About;
+            bool ContactCheck = features.Contact;
+            if(file != null)
+            {
+                Image img = new Image();
+                img = await StorePicture(img, comp, file);
+                _context.Images.Add(img);
+            }
+           
+            if(AboutCheck)
+            {
+                comp.About = true;
+                About newAbout = new About()
+                {
+                    CompanyId = comp.Id,
+                    Paragraph1Check = false,
+                    Paragraph2Check = false,
+                    Paragraph3Check = false,
+                    Twitter = false,
+                    Maps = false
+                };
+                _context.AboutPages.Add(newAbout);
+            }
+            if (ContactCheck)
+            {
+                comp.Contact = true;
+                Contact newContact = new Contact()
+                {
+                    CompanyId = comp.Id,
+                    Paragraph1Check = false,
+                    Paragraph2Check = false,
+                    Paragraph3Check = false,
+                    Twitter = false,
+                    Maps = false
+                };
+                _context.ContactPages.Add(newContact);
+            }
+            _context.SaveChanges();
             
+            return RedirectToAction("PremiumCheck");
+        }
+
+        public ActionResult PremiumCheck()
+        {
+            ViewData["Theme"] = "Bootstrap.css";
             return View();
         }
+
+        [HttpPost]
+        public ActionResult PremiumCheck(IFormCollection form)
+        {
+            return View();
+        }
+       
+
+        public ActionResult PremiumFeatures()
+        {
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: CreateSite/Create
         public ActionResult Create()
@@ -136,7 +211,7 @@ namespace Capstone.Controllers
                 using (var stream = new MemoryStream())
                 {
                     await picture.CopyToAsync(stream);
-                    img.ImagePath = stream.ToArray();
+                    img.ImageByte = stream.ToArray();
                     img.companyId = comp.Id;
                 }
             }

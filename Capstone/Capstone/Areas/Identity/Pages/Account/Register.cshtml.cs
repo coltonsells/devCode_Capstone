@@ -99,7 +99,7 @@ namespace Capstone.Areas.Identity.Pages.Account
                         Company newComp = new Company()
                         {
                             CreatorId = user.Id,
-                            setupComplete = false
+                            SetupComplete = false
                         };
                         _context.Companies.Add(newComp);
                         _context.SaveChanges();

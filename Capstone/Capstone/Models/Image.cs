@@ -14,6 +14,7 @@ namespace Capstone.Models
         [ForeignKey("company")]
         public string companyId { get; set; }
         public Company company { get; set; }
-        public byte[] ImagePath { get; set; }
+        public string ImagePath { get; set; }
+        public byte[] ImageByte { get; set; }
     }
 }
