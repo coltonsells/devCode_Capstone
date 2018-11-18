@@ -25,7 +25,7 @@ namespace Capstone.Controllers
                 var completeCheck = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
                 if(completeCheck.SetupComplete == true)
                 {
-                    return RedirectToAction("Index", "CompanyHome", new { id = completeCheck.Id});
+                    return RedirectToAction("HomePage", "CompanyHome", new { id = completeCheck.Id});
                 }
                 else
                 {

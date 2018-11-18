@@ -22,5 +22,7 @@ namespace Capstone.Data
         public DbSet<Contact> ContactPages { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<HomeJumbo> HomeJumbos { get; set; }
+        public DbSet<HomeContentImages> HomeContentImages { get; set; }
+        public DbSet<HomeContainer> HomeContainers { get; set; }
     }
 }

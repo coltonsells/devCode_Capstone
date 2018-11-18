@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "InitialSetup";
-    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+    //Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
 
 <h2>InitialSetup</h2>
@@ -46,17 +46,17 @@
         <p>
             What font would you like?
         </p>
-            <div class="form-control">
-                <select class="form-control" id="jumboTextFont" name="jumboTextFont">
-                    <option>--Select--</option>
-                    <option>Times New Roman</option>
-                    <option>Arial</option>
-                    <option>Georgia</option>
-                </select>
-            </div>
+        <div class="form-control">
+            <select class="form-control" id="jumboTextFont" name="jumboTextFont">
+                <option>--Select--</option>
+                <option>Times New Roman</option>
+                <option>Arial</option>
+                <option>Georgia</option>
+            </select>
         </div>
+    </div>
     <div id="jumboColor">
-        <p>Finally, what color do you want the text to be</p>
+        <p>What color do you want the text to be</p>
         <div class="form-control">
             <select class="form-control" id="jumboColor" name="jumboColor">
                 <option>--Select--</option>
@@ -67,7 +67,22 @@
             </select>
         </div>
     </div>
-    <div>
+    <div id="jumboTextSize">
+        <p>Finally, what size do you want the text to be</p>
+        <div class="form-control">
+            <select class="form-control" id="jumboTextSize" name="jumboTextSize">
+                <option>--Select--</option>
+                <option>small</option>
+                <option>smaller</option>
+                <option>medium</option>
+                <option>large</option>
+                <option>larger</option>
+                <option>x-large</option>
+                <option>xx-large</option>
+            </select>
+        </div>
+    </div>
+    <div style="font-size:x">
         <input type="submit" class="btn btn-primary" />
     </div>
 </div>

@@ -18,5 +18,6 @@ namespace Capstone.Models
         public string TextAlign { get; set; }
         public string TextFont { get; set; }
         public string TextColor { get; set; }
+        public string TextSize { get; set; }
     }
 }

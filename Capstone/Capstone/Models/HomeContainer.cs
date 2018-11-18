@@ -14,6 +14,7 @@ namespace Capstone.Models
         [ForeignKey("home")]
         public string HomeId { get; set; }
         public Home home { get; set; }
+        public int DivSection { get; set; }
         public byte[] Image { get; set; }
         public string Text { get; set; }
         public string Align { get; set; }

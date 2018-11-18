@@ -1,0 +1,59 @@
+﻿@model Capstone.Models.HomePageViewModel
+@{
+    ViewData["Title"] = "HomePage";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+@{
+    var imgSrc = "Hello";
+    if (Model.Image.ImageByte != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Image.ImageByte);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+    else
+    {
+        imgSrc = "https://images.pexels.com/photos/534031/pexels-photo-534031.jpeg";
+    }
+    int containerSplit = 12 / Model.Containers.Count;
+    string bootContainers = "col-sm-" + containerSplit;
+}
+
+    <div class="jumbotron" style="min-height:250px;background-image:Url(@imgSrc);background-size:cover;display:flex;justify-content:@Model.Jumbo.TextAlign">
+       <h2 class="col-sm-4"style="text-align:@Model.Jumbo.TextAlign;color:@Model.Jumbo.TextColor;font-size:@Model.Jumbo.TextSize;font-family:@Model.Jumbo.TextFont">@Model.Jumbo.Text</h2>
+    </div>
+    
+<br />
+        <div class="container">
+            <div class="row">
+                @{
+                    foreach (var cont in Model.Containers)
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers" style="text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                }
+            </div>
+            <style>
+                jumboAlign {
+                    display: flex;
+                    align-items: center;
+                }
+                .carousel-indicators li {
+                    visibility: hidden;
+                }
+                .carousel-caption {
+                    top: 0;
+                    bottom: auto;
+                    align-content:@Model.Jumbo.TextAlign;
+                }
+            </style>
+        </div>

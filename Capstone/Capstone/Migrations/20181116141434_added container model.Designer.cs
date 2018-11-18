@@ -4,14 +4,16 @@ using Capstone.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181116141434_added container model")]
+    partial class addedcontainermodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,8 +144,6 @@ namespace Capstone.Migrations
 
                     b.Property<bool>("Maps");
 
-                    b.Property<string>("NavTag");
-
                     b.Property<string>("Paragraph1");
 
                     b.Property<bool>("Paragraph1Check");
@@ -167,48 +167,6 @@ namespace Capstone.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HomePages");
-                });
-
-            modelBuilder.Entity("Capstone.Models.HomeContainer", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Align");
-
-                    b.Property<string>("Color");
-
-                    b.Property<int>("DivSection");
-
-                    b.Property<string>("Font");
-
-                    b.Property<string>("FontSize");
-
-                    b.Property<string>("HomeId");
-
-                    b.Property<byte[]>("Image");
-
-                    b.Property<string>("Text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HomeId");
-
-                    b.ToTable("HomeContainers");
-                });
-
-            modelBuilder.Entity("Capstone.Models.HomeContentImages", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("HomeId");
-
-                    b.Property<byte[]>("Image");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("HomeContentImages");
                 });
 
             modelBuilder.Entity("Capstone.Models.HomeJumbo", b =>
@@ -489,13 +447,6 @@ namespace Capstone.Migrations
                     b.HasOne("Capstone.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Capstone.Models.HomeContainer", b =>
-                {
-                    b.HasOne("Capstone.Models.Home", "home")
-                        .WithMany()
-                        .HasForeignKey("HomeId");
                 });
 
             modelBuilder.Entity("Capstone.Models.HomeJumbo", b =>

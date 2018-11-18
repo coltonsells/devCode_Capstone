@@ -46,7 +46,7 @@ namespace Capstone.Controllers
                 Paragraph2Check = false,
                 Paragraph3Check = false
             };
-            _context.Add(newHome);
+            _context.HomePages.Add(newHome);
             _context.SaveChanges();
             return RedirectToAction("CreateStandardFeaturesStart");
         }
@@ -65,14 +65,13 @@ namespace Capstone.Controllers
             var comp = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
             bool AboutCheck = features.About;
             bool ContactCheck = features.Contact;
-            if(file != null)
+            Image img = new Image() { companyId = comp.Id ,ImageByte = null };
+            if (file != null)
             {
-                Image img = new Image();
                 img = await StorePicture(img, comp, file);
-                _context.Images.Add(img);
             }
-           
-            if(AboutCheck)
+            _context.Images.Add(img);
+            if (AboutCheck)
             {
                 comp.About = true;
                 About newAbout = new About()
