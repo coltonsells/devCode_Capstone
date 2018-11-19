@@ -90,9 +90,6 @@ namespace Capstone.Controllers
                 Contact newContact = new Contact()
                 {
                     CompanyId = comp.Id,
-                    Paragraph1Check = false,
-                    Paragraph2Check = false,
-                    Paragraph3Check = false,
                     Twitter = false,
                     Maps = false
                 };

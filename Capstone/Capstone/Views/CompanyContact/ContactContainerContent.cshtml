@@ -1,0 +1,139 @@
+﻿@model IEnumerable<Capstone.Models.ContactContainer>
+@{
+    ViewData["Title"] = "ContactContainerContent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ContactContainerContent</h2>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+@using (Html.BeginForm("ContactContainerContent", "CompanyContact", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <div class="container">
+        <div>
+            <p>
+                Here you can enter the content for the containers
+            </p>
+        </div>
+        <div>
+            @{
+                string number = "";
+
+            }
+
+            @foreach (var cont in Model)
+            {
+                number = cont.DivSection.ToString();
+                <p>Do you want an image or text for this container?</p>
+                <div class="row" id="text">
+                    <button class="btn btn-primary" type="button" id="text+@number">Text</button>
+                    <button class="btn btn-primary" type="button" id="picButton+@number">Image</button>
+                    <script>
+                    document.getElementById("text+@number").addEventListener("click", function () {
+                        document.getElementById("textChoice+@number").style.display = "block";
+                        document.getElementById("picChoice+@number").style.display = "none";
+                    });
+
+                    document.getElementById("picButton+@number").addEventListener("click", function () {
+                        document.getElementById("picChoice+@number").style.display = "block";
+                        document.getElementById("textChoice+@number").style.display = "none";
+                    })
+                    </script>
+                </div>
+                string picNumber = "pic" + number;
+                <div class="row" id="picChoice+@number" style="display:none">
+                    <p>
+                        Input the image file below
+                    </p>
+                    <input type="file" name="@picNumber" />
+                </div>
+                <div class="row" id="textChoice+@number" style="display:none;">
+                    <div class="col-md-6">
+                        <textarea type="textarea" style="width:100%;" rows="12" name="textArea+@number" id="textArea+@number"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div>
+                                <label>Align</label>
+                            </div>
+                            <div>
+                                <select class="form-control" id="Alignment+@number" name="Alignment+@number">
+                                    <option>--Select--</option>
+                                    <option>left</option>
+                                    <option>right</option>
+                                    <option>center</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <label>Color</label>
+                            </div>
+                            <div>
+                                <select class="form-control" id="Color+@number" name="Color+@number">
+                                    <option>--Select--</option>
+                                    <option>white</option>
+                                    <option>black</option>
+                                    <option>red</option>
+                                    <option>blue</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <label>Font</label><br />
+                            </div>
+                            <div>
+                                <select class="form-control" id="Font+@number" name="Font+@number">
+                                    <option>--Select--</option>
+                                    <option>Times New Roman</option>
+                                    <option>Georgia</option>
+                                    <option>Arial</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <label>Size</label>
+                            </div>
+                            <div>
+                                <select class="form-control" id="Size+@number" name="Size+@number">
+                                    <option>--Select--</option>
+                                    <option>small</option>
+                                    <option>smaller</option>
+                                    <option>medium</option>
+                                    <option>large</option>
+                                    <option>larger</option>
+                                    <option>x-large</option>
+                                    <option>xx-large</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <label>Background-Color</label>
+                            </div>
+                            <div>
+                                <select class="form-control" id="BackgroundColor+@number" name="BackgroundColor+@number">
+                                    <option>--Select--</option>
+                                    <option>White</option>
+                                    <option>Black</option>
+                                    <option>Red</option>
+                                    <option>Blue</option>
+                                    <option>Green</option>
+                                    <option>Grey</option>
+                                    <option>Orange</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+        <input type="submit" class="btn btn-primary" />
+    </div>
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
