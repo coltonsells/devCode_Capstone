@@ -74,6 +74,7 @@ namespace Capstone.Controllers
             if (AboutCheck)
             {
                 comp.About = true;
+                comp.AboutSetupComplete = false;
                 About newAbout = new About()
                 {
                     CompanyId = comp.Id,
@@ -85,6 +86,7 @@ namespace Capstone.Controllers
             if (ContactCheck)
             {
                 comp.Contact = true;
+                comp.ContactSetupComplete = false;
                 Contact newContact = new Contact()
                 {
                     CompanyId = comp.Id,

@@ -33,11 +33,11 @@
                     <li><a asp-area="" asp-controller="CompanyHome" asp-action="HomePage">@ViewData["homeNav"]</a></li>
                     @if ((string)ViewData["aboutNav"] != "none")
                     {
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-area="" asp-controller="CompanyAbout" asp-action="AboutPage">@ViewData["aboutNav"]</a></li>
                     }
                     @if ((string)ViewData["contactNav"] != "none")
                     {
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li><a asp-area="" asp-controller="CompanyContact" asp-action="ContactPage">@ViewData["contactNav"]</a></li>
 
                     }
                 </ul>

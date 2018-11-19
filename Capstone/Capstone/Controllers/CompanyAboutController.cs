@@ -42,10 +42,206 @@ namespace Capstone.Controllers
         [HttpPost]
         public IActionResult AboutContainerSetup(string container)
         {
-            return View();
+            var comp = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
+            var about = _context.AboutPages.Where(x => x.CompanyId == comp.Id).FirstOrDefault();
+            int amount = 0;
+            about.ContainerType = container;
+
+            switch (container)
+            {
+                case "1":
+                    amount = 1;
+                    break;
+                case "2":
+                    amount = 2;
+                    break;
+                case "3":
+                    amount = 3;
+                    break;
+                case "4":
+                    amount = 3;
+                    break;
+                case "5":
+                    amount = 3;
+                    break;
+                case "6":
+                    amount = 4;
+                    break;
+                case "7":
+                    amount = 4;
+                    break;
+                case "8":
+                    amount = 4;
+                    break;
+                case "9":
+                    amount = 5;
+                    break;
+                case "10":
+                    amount = 6;
+                    break;
+            }
+            about.ContainerAmount = amount;
+            _context.SaveChanges();
+            return RedirectToAction("AboutContainerContent");
         }
 
 
+        public IActionResult AboutContainerContent()
+        {
+            var comp = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
+            var about = _context.AboutPages.Where(x => x.CompanyId == comp.Id).FirstOrDefault();
+            List<AboutContainer> containers = new List<AboutContainer>();
+            for (int i = 0; i < about.ContainerAmount; i++)
+            {
+                AboutContainer newCont = new AboutContainer()
+                {
+                    AboutId = about.Id,
+                    DivSection = i + 1
+                };
+                containers.Add(newCont);
+            }
+            return View(containers);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AboutContainerContent(IFormCollection form, IFormFile pic1, IFormFile pic2, IFormFile pic3, IFormFile pic4, IFormFile pic5, IFormFile pic6)
+        {
+            var company = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
+            var about = _context.AboutPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            if (pic1 != null || pic2 != null || pic3 != null || pic4 != null || pic5 != null || pic6 != null)
+            {
+                if (pic1 != null)
+                {
+                    AboutContainer newImage = new AboutContainer();
+                    newImage = await StoreAboutPicture(newImage, about, pic1);
+                    newImage.DivSection = 1;
+                    newImage.AboutId = about.Id;
+                    _context.AboutContainers.Add(newImage);
+                }
+                if (pic2 != null)
+                {
+                    AboutContainer newImage = new AboutContainer();
+                    newImage = await StoreAboutPicture(newImage, about, pic2);
+                    newImage.DivSection = 2;
+                    newImage.AboutId = about.Id;
+                    _context.AboutContainers.Add(newImage);
+                }
+                if (pic3 != null)
+                {
+                    AboutContainer newImage = new AboutContainer();
+                    newImage = await StoreAboutPicture(newImage, about, pic3);
+                    newImage.DivSection = 3;
+                    newImage.AboutId = about.Id;
+                    _context.AboutContainers.Add(newImage);
+                }
+                if (pic4 != null)
+                {
+                    AboutContainer newImage = new AboutContainer();
+                    newImage = await StoreAboutPicture(newImage, about, pic4);
+                    newImage.DivSection = 4;
+                    newImage.AboutId = about.Id;
+                    _context.AboutContainers.Add(newImage);
+                }
+                if (pic5 != null)
+                {
+                    AboutContainer newImage = new AboutContainer();
+                    newImage = await StoreAboutPicture(newImage, about, pic5);
+                    newImage.DivSection = 5;
+                    newImage.AboutId = about.Id;
+                    _context.AboutContainers.Add(newImage);
+                }
+                if (pic6 != null)
+                {
+                    AboutContainer newImage = new AboutContainer();
+                    newImage = await StoreAboutPicture(newImage, about, pic6);
+                    newImage.DivSection = 6;
+                    newImage.AboutId = about.Id;
+                    _context.AboutContainers.Add(newImage);
+                }
+            }
+            for (int i = 0; i < about.ContainerAmount; i++)
+            {
+                string container = (i + 1).ToString();
+                string check = "textArea+" + container;
+                if (form[check] != "")
+                {
+                    string align = "Alignment+" + container;
+                    string color = "Color+" + container;
+                    string font = "Font+" + container;
+                    string size = "Size+" + container;
+                    string BgColor = "BackgroundColor+" + container;
+                    AboutContainer newText = new AboutContainer();
+                    newText.Text = form[check];
+                    newText.Align = form[align];
+                    newText.Color = form[color];
+                    newText.Font = form[font];
+                    newText.BgColor = form[BgColor];
+                    newText.FontSize = form[size];
+                    newText.DivSection = (i + 1);
+                    newText.AboutId = about.Id;
+                    _context.AboutContainers.Add(newText);
+                }
+            }
+            company.AboutSetupComplete = true;
+
+            if (company.Contact)
+            {
+                _context.SaveChanges();
+                return RedirectToAction("ContactInitialSetup", "CompanyContact");
+            }
+            else
+            {
+                company.SetupComplete = true;
+                _context.SaveChanges();
+                return RedirectToAction("HomePage", "CompanyHome");
+            }
+    }
+
+    public IActionResult AboutPage()
+        {
+
+            ViewData["Theme"] = "bootstrap.css";
+            var company = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
+            var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            About about = new About() { NavTag = "none" };
+            Contact contact = new Contact() { NavTag = "none" };
+            if (company.About)
+            {
+                about = _context.AboutPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            }
+            if (company.Contact)
+            {
+                contact = _context.ContactPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            }
+            ViewData["homeNav"] = home.NavTag;
+            ViewData["aboutNav"] = about.NavTag;
+            ViewData["contactNav"] = contact.NavTag;
+            List<AboutContainer> containers = _context.AboutContainers.Where(x => x.AboutId == about.Id).ToList();
+            containers = containers.OrderBy(x => x.DivSection).ToList();
+            AboutViewModel ViewModel = new AboutViewModel()
+            {
+                Comp = company,
+                About = about,
+                Containers = containers
+            };
+            return View(ViewModel);
+        }
+
+    
+    private async Task<AboutContainer> StoreAboutPicture(AboutContainer img, About about, IFormFile picture)
+    {
+        if (picture != null)
+        {
+            using (var stream = new System.IO.MemoryStream())
+            {
+                await picture.CopyToAsync(stream);
+                img.Image = stream.ToArray();
+                img.AboutId = about.Id;
+            }
+        }
+
+        return img;
+    }
 
 
 
@@ -55,16 +251,8 @@ namespace Capstone.Controllers
 
 
 
-
-
-
-
-
-
-
-
-        // GET: CompanyAbout
-        public ActionResult Index()
+    // GET: CompanyAbout
+    public ActionResult Index()
         {
             return View();
         }

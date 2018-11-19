@@ -24,5 +24,6 @@ namespace Capstone.Data
         public DbSet<HomeJumbo> HomeJumbos { get; set; }
         public DbSet<HomeContentImages> HomeContentImages { get; set; }
         public DbSet<HomeContainer> HomeContainers { get; set; }
+        public DbSet<AboutContainer> AboutContainers { get; set; }
     }
 }

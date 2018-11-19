@@ -29,7 +29,22 @@ namespace Capstone.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "CreateSite", new { id = completeCheck.Id });
+                    if (completeCheck.HomeSetupComplete != true)
+                    {
+                        return RedirectToAction("Index","CreateSite");
+                    }
+                    if(completeCheck.HomeSetupComplete == true && completeCheck.About == true && completeCheck.AboutSetupComplete == false)
+                    {
+                        return RedirectToAction("AboutInitialSetup", "CompanyAbout");
+                    }
+                    else if(completeCheck.Contact == true && completeCheck.HomeSetupComplete == true && completeCheck.ContactSetupComplete == false)
+                    {
+                        return RedirectToAction("ContactInitialSetup", "CompanyContact");
+                    }
+                    else
+                    {
+                        return RedirectToAction("HomePage", "CompanyHome", new { id = completeCheck.Id });
+                    }
                 }
             }
             else

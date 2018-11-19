@@ -1,0 +1,258 @@
+﻿@model Capstone.Models.AboutViewModel
+@{
+    ViewData["Title"] = "AboutPage";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+@{ 
+    string bootContainers1 = "col-sm-6";
+    string bootContainers2 = "col-sm-12";
+}
+
+<h2>AboutPage</h2>
+
+<div class="container">
+    <div class="row">
+        @{
+            if (Model.About.ContainerType == "1" || Model.About.ContainerType == "2" || Model.About.ContainerType == "3")
+            {
+                foreach (var cont in Model.Containers)
+                {
+                    var contImg = "";
+                    if (cont.Image != null)
+                    {
+                        var base64 = Convert.ToBase64String(cont.Image);
+                        contImg = String.Format("data:image/gif;base64,{0}", base64);
+                        <div class="@bootContainers2" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                    }
+                    else
+                    {
+                        <div class="@bootContainers2" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                    }
+                }
+            }
+            else if (Model.About.ContainerType == "4")
+            {
+                foreach (var cont in Model.Containers)
+                {
+                    if (cont.DivSection == 1)
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers2" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers2" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                    else
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers1" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                }
+            }
+            else if (Model.About.ContainerType == "5")
+            {
+                foreach (var cont in Model.Containers)
+                {
+                    if (cont.DivSection == 3)
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers2" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers2" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                    else
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers1" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                }
+            }
+            else if (Model.About.ContainerType == "6")
+            {
+                foreach (var cont in Model.Containers)
+                {
+                    if (cont.DivSection == 3 || cont.DivSection == 4)
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers2" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers2" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                    else
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers1" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                }
+            }
+            else if (Model.About.ContainerType == "7")
+            {
+                foreach (var cont in Model.Containers)
+                {
+                    if (cont.DivSection == 1 || cont.DivSection == 4)
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers2" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers2" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                    else
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers1" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                }
+            }
+            else if (Model.About.ContainerType == "8")
+            {
+                foreach (var cont in Model.Containers)
+                {
+                    if (cont.DivSection == 1 || cont.DivSection == 2)
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers2" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers2" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                    else
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers1" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                }
+            }
+            else if (Model.About.ContainerType == "9")
+            {
+                foreach (var cont in Model.Containers)
+                {
+                    if (cont.DivSection == 5)
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers2" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers2" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                    else
+                    {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers1" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    }
+                }
+            }
+            else if (Model.About.ContainerType == "10")
+            {
+                foreach (var cont in Model.Containers)
+                {
+                        var contImg = "";
+                        if (cont.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cont.Image);
+                            contImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="@bootContainers1" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                        }
+                        else
+                        {
+                            <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                        }
+                    
+                }
+            }
+        }
+    </div>
+</div>

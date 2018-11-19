@@ -16,6 +16,7 @@ namespace Capstone.Models
         public Company company { get; set; }
         public string NavTag { get; set; }
         public string ContainerType { get; set; }
+        public int ContainerAmount { get; set; }
         public bool Maps { get; set; }
         public bool Twitter { get; set; }
 

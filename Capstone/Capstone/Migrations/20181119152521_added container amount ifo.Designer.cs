@@ -4,14 +4,16 @@ using Capstone.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Capstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181119152521_added container amount ifo")]
+    partial class addedcontaineramountifo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,36 +43,6 @@ namespace Capstone.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("AboutPages");
-                });
-
-            modelBuilder.Entity("Capstone.Models.AboutContainer", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AboutId");
-
-                    b.Property<string>("Align");
-
-                    b.Property<string>("BgColor");
-
-                    b.Property<string>("Color");
-
-                    b.Property<int>("DivSection");
-
-                    b.Property<string>("Font");
-
-                    b.Property<string>("FontSize");
-
-                    b.Property<byte[]>("Image");
-
-                    b.Property<string>("Text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AboutId");
-
-                    b.ToTable("AboutContainers");
                 });
 
             modelBuilder.Entity("Capstone.Models.Company", b =>
@@ -509,13 +481,6 @@ namespace Capstone.Migrations
                     b.HasOne("Capstone.Models.Company", "company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
-                });
-
-            modelBuilder.Entity("Capstone.Models.AboutContainer", b =>
-                {
-                    b.HasOne("Capstone.Models.About", "about")
-                        .WithMany()
-                        .HasForeignKey("AboutId");
                 });
 
             modelBuilder.Entity("Capstone.Models.Contact", b =>

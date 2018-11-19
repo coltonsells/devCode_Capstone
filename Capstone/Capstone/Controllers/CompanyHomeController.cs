@@ -163,6 +163,7 @@ namespace Capstone.Controllers
                     _context.HomeContainers.Add(newText);
                 }
             }
+            company.HomeSetupComplete = true;
             if (company.About)
             {
                 _context.SaveChanges();
@@ -202,6 +203,7 @@ namespace Capstone.Controllers
             ViewData["aboutNav"] = about.NavTag;
             ViewData["contactNav"] = contact.NavTag;
             List<HomeContainer> containers = _context.HomeContainers.Where(x => x.HomeId == home.Id).ToList();
+            containers = containers.OrderBy(x => x.DivSection).ToList();
             HomePageViewModel ViewModel = new HomePageViewModel()
             {
                 Comp = company,
