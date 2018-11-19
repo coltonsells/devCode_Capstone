@@ -21,5 +21,6 @@ namespace Capstone.Models
         public string Color { get; set; }
         public string Font { get; set; }
         public string FontSize { get; set; }
+        public string BgColor { get; set; }
     }
 }

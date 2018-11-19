@@ -150,11 +150,13 @@ namespace Capstone.Controllers
                     string color = "Color+" + container;
                     string font = "Font+" + container;
                     string size = "Size+" + container;
+                    string BgColor = "BackgroundColor+" + container;
                     HomeContainer newText = new HomeContainer();
                     newText.Text = form[check];
                     newText.Align = form[align];
                     newText.Color = form[color];
                     newText.Font = form[font];
+                    newText.Align = form[BgColor];
                     newText.FontSize = form[size];
                     newText.DivSection = (i + 1);
                     newText.HomeId = home.Id;
