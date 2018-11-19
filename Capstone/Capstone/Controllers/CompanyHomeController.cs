@@ -166,12 +166,12 @@ namespace Capstone.Controllers
             if (company.About)
             {
                 _context.SaveChanges();
-                return RedirectToAction("AboutInitialSetup");
+                return RedirectToAction("AboutInitialSetup", "CompanyAbout");
             }
             else if (company.Contact)
             {
                 _context.SaveChanges();
-                return RedirectToAction("ContactInitialSetup");
+                return RedirectToAction("ContactInitialSetup", "CompanyContact");
             }
             else
             {

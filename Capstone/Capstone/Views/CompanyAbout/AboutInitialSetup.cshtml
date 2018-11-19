@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "AboutInitialSetup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AboutInitialSetup</h2>
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div id="intro">
+            <p>
+                ALright lets get the layout of your About page set up
+            </p>
+        </div>
+        <div id="navTag">
+            <p>
+                First, what would you like your home page to be called on your navBar (Usually the name of your company?)
+                <div class="form-control">
+                    <input type="text" name="navTag" />
+                </div>
+            </p>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary" />
+        </div>
+    </div>
+}

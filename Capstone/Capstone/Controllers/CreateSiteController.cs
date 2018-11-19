@@ -77,9 +77,6 @@ namespace Capstone.Controllers
                 About newAbout = new About()
                 {
                     CompanyId = comp.Id,
-                    Paragraph1Check = false,
-                    Paragraph2Check = false,
-                    Paragraph3Check = false,
                     Twitter = false,
                     Maps = false
                 };
