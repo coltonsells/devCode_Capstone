@@ -1,0 +1,75 @@
+﻿@model Capstone.Models.HomePageViewModel
+@{
+    var imgSrc = "Hello";
+    if (Model.Image.ImageByte != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Image.ImageByte);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+    else
+    {
+        imgSrc = "https://images.pexels.com/photos/534031/pexels-photo-534031.jpeg";
+    }
+
+}
+
+
+<style>
+    .Cont {
+        background-size: contain;
+        background-size: cover;
+        height: 200px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background-repeat: no-repeat;
+    }
+
+    .h3 {
+        font-weight: bolder;
+    }
+
+    .row {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .bot {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .background-image {
+        -webkit-filter: brightness(60%);
+    }
+
+        .background-image:hover {
+            -webkit-filter: brightness(100%);
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            -o-transition: all 1s ease;
+            transition: all 1s ease;
+        }
+</style>
+
+<div class="Cont container background-image" style="background-image:url(@imgSrc)" onclick="location.href='@Url.Action("HomePage","CompanyHome", new { id = Model.Comp.Id})'">
+    <div class="row" style="text-align:left">
+        <div class="col-sm-12">
+            <h3 style="color:white">
+
+                @{
+                    if (Model.Comp.Name == null)
+                    {
+                        @:This Company has no name
+                    }
+                    else
+                    {
+                        @:@Model.Comp.Name
+                    }
+                }
+            </h3>
+
+        </div>
+    </div>
+
+</div>

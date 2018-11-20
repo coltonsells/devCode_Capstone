@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "StripeCharge";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+
+<form action="/CreateSite/Charge" method="POST">
+    <br />
+    <article>
+        <h3>Premium Upgrade</h3>
+        <p>Premium features allow you integrate new API based features as well as unlock many new customization options for your webpage!</p>
+        <label>Amount: $10.00</label>
+    </article>
+    <script src="//checkout.stripe.com/v2/checkout.js"
+            class="stripe-button"
+            data-key="@Stripe.Value.PublishableKey"
+            data-locale="auto"
+            data-description="Sample Charge"
+            data-amount="1000">
+    </script>
+</form>

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Html;
 using React.AspNet;
+using Stripe;
 
 namespace Capstone
 {
@@ -46,6 +47,7 @@ namespace Capstone
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             return services.BuildServiceProvider();
         }
 
@@ -93,6 +95,8 @@ namespace Capstone
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            StripeConfiguration.SetApiKey("sk_test_Jlew9ceAAyewSm37S0p88q00");
+
         }
     }
 }

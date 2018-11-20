@@ -193,15 +193,15 @@ namespace Capstone.Controllers
             {
                 company.SetupComplete = true;
                 _context.SaveChanges();
-                return RedirectToAction("HomePage", "CompanyHome");
+                return RedirectToAction("HomePage", "CompanyHome", new { id = company.Id});
             }
     }
 
-    public IActionResult AboutPage()
+    public IActionResult AboutPage(string id)
         {
-
+            ViewData["CompanyId"] = id;
             ViewData["Theme"] = "bootstrap.css";
-            var company = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
+            var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
             Contact contact = new Contact() { NavTag = "none" };

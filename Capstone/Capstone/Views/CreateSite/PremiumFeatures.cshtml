@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "PremiumFeatures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PremiumFeatures</h2>
+@using (Html.BeginForm())
+{
+<div class="container">
+    <div>
+        <p>
+            Which Features do you want to add?
+        </p>
+    </div>
+    <div class="col-sm-4 form-group">
+        <h2>
+            Google Maps
+        </h2>
+        <p>
+            The google maps feature allows you to display your location on your home, about, and contact pages via Google Maps. Familiar google
+            maps features are also available including google street view.
+        </p>
+        <img />
+        <input type="checkbox" name="maps"/>
+    </div>
+    <div class="col-sm-4 form-group">
+        <h2>
+            Twitter
+        </h2>
+        <p>
+            Dispaly your twitter feed on your home, about, or contact pages.
+        </p>
+        <img />
+        <input type="checkbox" name="twitter"/>
+    </div>
+    <div class="col-sm-4">
+        <h2>
+            Scheduler
+        </h2>
+        <p>
+            Allow your customers to schedule appointments based on your services.
+        </p>
+        <img />
+        <input type="checkbox" name="schedule"/>
+    </div>
+    <input type="submit" value="Finish" />
+</div>
+}

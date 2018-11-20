@@ -156,7 +156,7 @@ namespace Capstone.Controllers
                     newText.Align = form[align];
                     newText.Color = form[color];
                     newText.Font = form[font];
-                    newText.Align = form[BgColor];
+                    newText.BgColor = form[BgColor];
                     newText.FontSize = form[size];
                     newText.DivSection = (i + 1);
                     newText.HomeId = home.Id;
@@ -178,14 +178,15 @@ namespace Capstone.Controllers
             {
                 company.SetupComplete = true;
                 _context.SaveChanges();
-                return RedirectToAction("HomePage");
+                return RedirectToAction("HomePage", new { id = company.Id });
             }
         }
 
-        public IActionResult HomePage()
+        public IActionResult HomePage(string id)
         {
+            ViewData["CompanyId"] = id;
             ViewData["Theme"] = "bootstrap.css";
-            var company = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
+            var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             var image = _context.Images.Where(x => x.companyId == company.Id).FirstOrDefault();
             var jumbo = _context.HomeJumbos.Where(x => x.CompanyId == company.Id).FirstOrDefault();

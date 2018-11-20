@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "ChargeConfirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ChargeConfirmation</h2>
+
+<div class="container">
+    <h1>
+        Thank you for your payment.
+    </h1>
+    <button onclick="location.href='@Url.Action("GetCharge", "CreateSite")'">Continue</button>
+</div>

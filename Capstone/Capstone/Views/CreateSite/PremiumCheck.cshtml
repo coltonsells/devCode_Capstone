@@ -12,7 +12,40 @@
             Premium
         </h1>
         <p>Premium features allow you to add even more customization to your website</p>
-        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("PremiumFeatures", "CreateSite")'">GO PREMIUM</button>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <h2>
+                Google Maps
+            </h2>
+            <p>
+                The google maps feature allows you to display your location on your home, about, and contact pages via Google Maps. Familiar google
+                maps features are also available including google street view.
+            </p>
+            <img />
+        </div>
+        <div class="col-sm-4">
+            <h2>
+                Twitter
+            </h2>
+            <p>
+                Dispaly your twitter feed on your home, about, or contact pages.
+            </p>
+            <img />
+        </div>
+        <div class="col-sm-4">
+            <h2>
+                Scheduler
+            </h2>
+            <p>
+                Allow your customers to schedule appointments based on your services.
+            </p>
+            <img />
+        </div>
+        <p>
+            Premium Features: $10.00
+        </p>
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetCharge", "CreateSite")'">GO PREMIUM</button>
         <button tpye="button" class="btn btn-primary" onclick="location.href ='@Url.Action("InitialSetup", "CompanyHome")'">no thanks</button>
     </div>
 </div>

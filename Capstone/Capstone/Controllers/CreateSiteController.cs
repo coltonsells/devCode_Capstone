@@ -8,6 +8,7 @@ using Capstone.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 
 namespace Capstone.Controllers
 {
@@ -118,7 +119,43 @@ namespace Capstone.Controllers
             return View();
         }
 
+        public IActionResult GetCharge(string id)
+        {
+            return View("StripeCharge");
+        }
+        [HttpPost]
+        public IActionResult Charge(string stripeEmail, string stripeToken, string id)
+        {
+           
+            StripeSettings stripe = new StripeSettings();
+            
+            var key = stripe.PublishableKey;
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            var customers = new CustomerService();
+            var charges = new ChargeService();
 
+            var customer = customers.Create(new CustomerCreateOptions
+            {
+                Email = stripeEmail,
+                SourceToken = stripeToken
+            });
+
+            var charge = charges.Create(new ChargeCreateOptions
+            {
+                Amount = 1000,
+                Description = "Sample Charge",
+                Currency = "usd",
+                CustomerId = customer.Id
+            });
+
+            _context.SaveChanges();
+            return View("ChargeConfirmation", new { id = comp.Id});
+        }
+
+        public IActionResult ChargeConfirmation(string id)
+        {
+            return View();
+        }
 
 
 
