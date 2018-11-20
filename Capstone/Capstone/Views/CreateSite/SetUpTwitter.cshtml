@@ -1,0 +1,23 @@
+﻿@model Capstone.Models.Company
+@{
+    ViewData["Title"] = "SetUpTwitter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+<h2>SetUpTwitter</h2>
+
+<div class="container">
+    <div>
+        <h2>
+            Enter you Titter handle below
+        </h2>
+    </div>
+    <div>
+        <label asp-for="@Model.Twitter" class="control-label"></label>
+        <input asp-for="@Model.Twitter" class="form-control" />
+    </div>
+    @Html.HiddenFor(x => x.Id)
+    <button type="submit" class="btn btn-primary">Continue</button>
+</div>
+}

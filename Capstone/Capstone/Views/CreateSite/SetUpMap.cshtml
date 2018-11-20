@@ -1,0 +1,31 @@
+﻿@model Capstone.Models.Company
+@{
+    ViewData["Title"] = "SetUpMap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SetUpMap</h2>
+@using (Html.BeginForm())
+{
+<div class="container">
+    <div>
+        <p>
+            Use current company address<br />
+            or<br />
+            Enter the address you want to appear on your map
+            <label asp-for="@Model.Street" class="control-label"></label>
+            <input asp-for="@Model.Street" class="form-control" />
+            <label asp-for="@Model.City" class="control-label"></label>
+            <input asp-for="@Model.City" class="form-control" />
+            <label asp-for="@Model.State" class="control-label"></label>
+            <input asp-for="@Model.State" class="form-control" />
+            <label asp-for="@Model.Zip" class="control-label"></label>
+            <input asp-for="@Model.Zip" class="form-control" />
+            @Html.HiddenFor(x => x.Id);
+        </p>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Continue</button>
+    </div>
+</div>
+}

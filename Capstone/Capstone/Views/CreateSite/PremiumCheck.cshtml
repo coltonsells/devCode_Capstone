@@ -1,4 +1,4 @@
-﻿
+﻿@model Capstone.Models.Company
 @{
     ViewData["Title"] = "PremiumCheck";
     //Layout = "~/Views/Shared/_CompanyLayout.cshtml";
@@ -14,7 +14,7 @@
         <p>Premium features allow you to add even more customization to your website</p>
     </div>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <h2>
                 Google Maps
             </h2>
@@ -24,7 +24,7 @@
             </p>
             <img />
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <h2>
                 Twitter
             </h2>
@@ -33,7 +33,7 @@
             </p>
             <img />
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <h2>
                 Scheduler
             </h2>
@@ -42,10 +42,26 @@
             </p>
             <img />
         </div>
+        <div class="col-sm-3">
+            <h2>
+                Email
+            </h2>
+            <p>
+               Allow customers to send feedback via email on your contact page.
+            </p>
+            <img />
+        </div>
         <p>
             Premium Features: $10.00
         </p>
         <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetCharge", "CreateSite")'">GO PREMIUM</button>
-        <button tpye="button" class="btn btn-primary" onclick="location.href ='@Url.Action("InitialSetup", "CompanyHome")'">no thanks</button>
+        @if (Model.SetupComplete)
+        {
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("HomePage", "CompanyHome", new { id = Model.Id })'">no thanks</button>
+        }
+        else
+        {
+            <button type="button" class="btn btn-primary" onclick="location.href ='@Url.Action("InitialSetup", "CompanyHome")'">no thanks</button>
+        }
     </div>
 </div>

@@ -1,14 +1,17 @@
-﻿
+﻿@model Capstone.Models.Company
 @{
     ViewData["Title"] = "ChargeConfirmation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>ChargeConfirmation</h2>
+@using (Html.BeginForm())
+{
 
 <div class="container">
     <h1>
         Thank you for your payment.
     </h1>
-    <button onclick="location.href='@Url.Action("GetCharge", "CreateSite")'">Continue</button>
+    <button type="submit" class="btn btn-primary">Continue</button>
 </div>
+}

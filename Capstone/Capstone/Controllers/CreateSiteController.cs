@@ -103,34 +103,151 @@ namespace Capstone.Controllers
 
         public ActionResult PremiumCheck()
         {
+            var comp = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
             ViewData["Theme"] = "Bootstrap.css";
-            return View();
+            return View(comp);
         }
 
         [HttpPost]
         public ActionResult PremiumCheck(IFormCollection form)
         {
+            
             return View();
         }
        
 
-        public ActionResult PremiumFeatures()
+        public IActionResult PremiumFeatures(string id)
         {
+            TempData["id"] = id;
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            return View(comp);
+        }
+
+        [HttpPost]
+        public IActionResult PremiumFeatures(IFormCollection form)
+        {
+            string compId = (string)TempData["id"];
+            var comp = _context.Companies.Where(x => x.Id == compId).FirstOrDefault();
+            comp.MapChoice = false;
+            comp.TwitterChoice = false;
+            comp.ContactChoice = false;
+            comp.ScheduleChoice = false;
+            var an = form["MapChoice"][0];
+            if(form["MapChoice"][0] == "true")
+            {
+                comp.MapChoice = true;
+            }
+            if(form["TwitterChoice"][0] == "true")
+            {
+                comp.TwitterChoice = true;
+            }
+            if(form["ContactChoice"][0] == "true")
+            {
+                comp.ContactChoice = true;
+            }
+            if(form["ScheduleChoice"][0] == "true")
+            {
+                comp.ScheduleChoice = true;
+            }
+            _context.SaveChanges();
+            if (comp.MapChoice)
+            {
+                return RedirectToAction("SetUpMap", new { id = comp.Id });
+            }
+            else if (comp.TwitterChoice)
+            {
+                return RedirectToAction("SetUpTwitter", new { id = comp.Id });
+            }
+            else if (comp.ContactChoice)
+            {
+                return RedirectToAction("SetUpContact", new { id = comp.Id });
+            }
+            else if (comp.ScheduleChoice)
+            {
+                return RedirectToAction("SetUpSchedule", new { id = comp.Id });
+            }
+            else if (comp.SetupComplete)
+            {
+                return RedirectToAction("HomePage", "CompanyHome", new { id = comp.Id});
+            }
+            else
+            {
+                return RedirectToAction("InitialSetup", "CompanyHome", new { id = comp.Id });
+            }
+        }
+
+
+        public IActionResult SetUpMap(string id)
+        {
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            return View(comp);
+        }
+
+        [HttpPost]
+        public IActionResult SetUpMap(IFormCollection form)
+        {
+            var comp = _context.Companies.Where(x => x.Id == form["Id"]).FirstOrDefault();
+            comp.Street = form["Street"];
+            comp.City = form["City"];
+            comp.State = form["State"];
+            comp.Zip = form["Zip"];
+            var coords = Company.GetLatandLong(comp);
+            comp.Lat = coords["lat"];
+            comp.Long = coords["lng"];
+            _context.SaveChanges();
+            if(comp.TwitterChoice == true)
+            {
+                return RedirectToAction("SetUpTwitter", new { id = comp.Id });
+            }
+            else if(comp.ContactChoice == true)
+            {
+                return RedirectToAction("SetUpContact", new { id = comp.Id });
+            }
+            else if(comp.ScheduleChoice == true)
+            {
+                return RedirectToAction("SetUpSchedule", new { id = comp.Id });
+            }
+            else if (comp.SetupComplete)
+            {
+                return RedirectToAction("HomePage", "CompanyHome", new { id = comp.Id });
+            }
+            else
+            {
+                return RedirectToAction("InitialSetup", "CompanyHome", new { id = comp.Id });
+            }
+        }
+
+        public IActionResult SetUpTwitter(string id)
+        {
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            return View(comp);
+        }
+
+        [HttpPost]
+        public IActionResult SetUpTwitter(IFormCollection form)
+        {
+            var comp = _context.Companies.Where(x => x.Id == form["Id"]).FirstOrDefault();
+            comp.Twitter = form["Twitter"];
+            _context.SaveChanges();
             return View();
         }
+
+
+
+
 
         public IActionResult GetCharge(string id)
         {
             return View("StripeCharge");
         }
         [HttpPost]
-        public IActionResult Charge(string stripeEmail, string stripeToken, string id)
+        public IActionResult Charge(string stripeEmail, string stripeToken)
         {
-           
+  
             StripeSettings stripe = new StripeSettings();
             
             var key = stripe.PublishableKey;
-            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            var comp = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
             var customers = new CustomerService();
             var charges = new ChargeService();
 
@@ -149,16 +266,22 @@ namespace Capstone.Controllers
             });
 
             _context.SaveChanges();
-            return View("ChargeConfirmation", new { id = comp.Id});
+            return RedirectToAction("ChargeConfirmation", new { id = comp.Id});
         }
 
         public IActionResult ChargeConfirmation(string id)
         {
-            return View();
+            TempData["CompId"] = id;
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            return View(comp);
         }
 
-
-
+        [HttpPost]
+        public IActionResult ChargeConfirmation()
+        {
+            string compId = (string)TempData["CompId"];
+            return RedirectToAction("PremiumFeatures", new { id = compId });
+        }
 
 
 

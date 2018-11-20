@@ -1,4 +1,4 @@
-﻿
+﻿@model Capstone.Models.Company
 @{
     ViewData["Title"] = "PremiumFeatures";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,7 +22,9 @@
             maps features are also available including google street view.
         </p>
         <img />
-        <input type="checkbox" name="maps"/>
+        <label asp-for="@Model.MapChoice" class="control-label"></label>
+        <input asp-for="@Model.MapChoice" class="form-control" />
+
     </div>
     <div class="col-sm-4 form-group">
         <h2>
@@ -32,7 +34,8 @@
             Dispaly your twitter feed on your home, about, or contact pages.
         </p>
         <img />
-        <input type="checkbox" name="twitter"/>
+        <label asp-for="@Model.TwitterChoice" class="control-label"></label>
+        <input asp-for="@Model.TwitterChoice" class="form-control" />
     </div>
     <div class="col-sm-4">
         <h2>
@@ -42,7 +45,19 @@
             Allow your customers to schedule appointments based on your services.
         </p>
         <img />
-        <input type="checkbox" name="schedule"/>
+        <label asp-for="@Model.ScheduleChoice" class="control-label"></label>
+        <input asp-for="@Model.ScheduleChoice" class="form-control" />
+    </div>
+    <div class="col-sm-4">
+        <h2>
+            Contact
+        </h2>
+        <p>
+            Allow your customers to contact you via email.
+        </p>
+        <img />
+        <label asp-for="@Model.ContactChoice" class="control-label"></label>
+        <input asp-for="@Model.ContactChoice" class="form-control" />
     </div>
     <input type="submit" value="Finish" />
 </div>
