@@ -22,5 +22,7 @@ namespace Capstone.Models
         public string Font { get; set; }
         public string FontSize { get; set; }
         public string BgColor { get; set; }
+        public bool Maps { get; set; }
+        public bool Twitter { get; set; }
     }
 }

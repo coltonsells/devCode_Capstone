@@ -1,4 +1,4 @@
-﻿@model Capstone.Models.Company
+﻿@model Capstone.Models.SetupViewModel
 @{
     ViewData["Title"] = "SetUpMap";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,16 +13,35 @@
             Use current company address<br />
             or<br />
             Enter the address you want to appear on your map
-            <label asp-for="@Model.Street" class="control-label"></label>
-            <input asp-for="@Model.Street" class="form-control" />
-            <label asp-for="@Model.City" class="control-label"></label>
-            <input asp-for="@Model.City" class="form-control" />
-            <label asp-for="@Model.State" class="control-label"></label>
-            <input asp-for="@Model.State" class="form-control" />
-            <label asp-for="@Model.Zip" class="control-label"></label>
-            <input asp-for="@Model.Zip" class="form-control" />
-            @Html.HiddenFor(x => x.Id);
+            <label asp-for="@Model.Comp.Street" class="control-label"></label>
+            <input asp-for="@Model.Comp.Street" class="form-control" />
+            <label asp-for="@Model.Comp.City" class="control-label"></label>
+            <input asp-for="@Model.Comp.City" class="form-control" />
+            <label asp-for="@Model.Comp.State" class="control-label"></label>
+            <input asp-for="@Model.Comp.State" class="form-control" />
+            <label asp-for="@Model.Comp.Zip" class="control-label"></label>
+            <input asp-for="@Model.Comp.Zip" class="form-control" />
+            @Html.HiddenFor(x => x.Comp.Id);
+            @Html.HiddenFor(x => x.Home.Id);
+            
+                @Html.HiddenFor(x => x.About.Id);
+           
+                @Html.HiddenFor(x => x.Contact.Id);
+            
         </p>
+    </div>
+    <div>
+        Which pages do you want to place a map on?
+    </div>
+    <div>
+        <label class="control-label">Home</label>
+        <input asp-for="@Model.Home.Maps" class="form-control" />
+        @if (Model.Comp.About)
+        {
+            <label asp-for="@Model.Comp.About" class="control-label"></label>
+            <input asp-for="@Model.About.Maps" class="form-control" />
+        }
+      
     </div>
     <div>
         <button type="submit" class="btn btn-primary">Continue</button>

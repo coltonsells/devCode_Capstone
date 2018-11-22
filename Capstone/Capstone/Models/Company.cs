@@ -29,6 +29,7 @@ namespace Capstone.Models
         public string Type { get; set; }
         public bool About { get; set; }
         public bool Contact { get; set; }
+        public bool Scheduler { get; set; }
         public bool HomeSetupComplete { get; set; }
         public bool ContactSetupComplete { get; set; }
         public bool AboutSetupComplete { get; set; }

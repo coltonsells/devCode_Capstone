@@ -1,4 +1,4 @@
-﻿@model Capstone.Models.Company
+﻿@model Capstone.Models.SetupViewModel
 @{
     ViewData["Title"] = "SetUpTwitter";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,10 +14,30 @@
         </h2>
     </div>
     <div>
-        <label asp-for="@Model.Twitter" class="control-label"></label>
-        <input asp-for="@Model.Twitter" class="form-control" />
+        <label asp-for="@Model.Comp.Twitter" class="control-label"></label>
+        <input asp-for="@Model.Comp.Twitter" class="form-control" />
     </div>
-    @Html.HiddenFor(x => x.Id)
+    <div>
+        @Html.HiddenFor(x => x.Comp.Id)
+        @Html.HiddenFor(x => x.Home.Id)
+        @if (Model.Comp.About)
+        {
+            @Html.HiddenFor(x => x.About.Id)
+        }
+        <button type="submit" class="btn btn-primary">Continue</button>
+    </div>
+    <div>
+        <p>
+            Which pages do you want to display your Twitter feed.
+        </p>
+        <label class="control-label">Home</label>
+        <input asp-for="@Model.Home.Twitter" class="form-control" />
+        @if (Model.Comp.About)
+        {
+            <label asp-for="@Model.Comp.About" class="control-label"></label>
+            <input asp-for="@Model.About.Twitter" class="form-control" />
+        }
+    </div>
     <button type="submit" class="btn btn-primary">Continue</button>
 </div>
 }

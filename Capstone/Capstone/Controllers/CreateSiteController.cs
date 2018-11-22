@@ -180,20 +180,44 @@ namespace Capstone.Controllers
         public IActionResult SetUpMap(string id)
         {
             var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
-            return View(comp);
+            SetupViewModel ViewModel = new SetupViewModel();
+            ViewModel.Comp = comp;
+            ViewModel.Home = _context.HomePages.Where(x => x.CompanyId == comp.Id).FirstOrDefault();
+            if (comp.About)
+            {
+                ViewModel.About = _context.AboutPages.Where(x => x.CompanyId == comp.Id).FirstOrDefault();
+            }
+            if (comp.Contact)
+            {
+                ViewModel.Contact = _context.ContactPages.Where(x => x.CompanyId == comp.Id).FirstOrDefault();
+            }
+            return View(ViewModel);
         }
 
         [HttpPost]
         public IActionResult SetUpMap(IFormCollection form)
         {
-            var comp = _context.Companies.Where(x => x.Id == form["Id"]).FirstOrDefault();
-            comp.Street = form["Street"];
-            comp.City = form["City"];
-            comp.State = form["State"];
-            comp.Zip = form["Zip"];
+            var comp = _context.Companies.Where(x => x.Id == form["Comp.Id"]).FirstOrDefault();
+            comp.Street = form["Comp.Street"];
+            comp.City = form["Comp.City"];
+            comp.State = form["Comp.State"];
+            comp.Zip = form["Comp.Zip"];
             var coords = Company.GetLatandLong(comp);
             comp.Lat = coords["lat"];
             comp.Long = coords["lng"];
+            if (comp.About)
+            {
+                var about = _context.AboutPages.Where(x => x.Id == form["About.Id"]).FirstOrDefault();
+                if(form["About.Maps"][0] == "true")
+                {
+                    about.Maps = true;
+                }
+            }
+            if(form["Home.Maps"][0] == "true")
+            {
+                var home = _context.HomePages.Where(x => x.Id == form["Home.Id"]).FirstOrDefault();
+                home.Maps = true;
+            }
             _context.SaveChanges();
             if(comp.TwitterChoice == true)
             {
@@ -220,21 +244,110 @@ namespace Capstone.Controllers
         public IActionResult SetUpTwitter(string id)
         {
             var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
-            return View(comp);
+            var home = _context.HomePages.Where(x => x.CompanyId == comp.Id).FirstOrDefault();
+            var about = _context.AboutPages.Where(x => x.CompanyId == comp.Id).FirstOrDefault();
+            var contact = _context.ContactPages.Where(x => x.CompanyId == comp.Id).FirstOrDefault();
+            SetupViewModel ViewModel = new SetupViewModel()
+            {
+                Comp = comp,
+                Home = home,
+                About = about,
+                Contact = contact
+            };
+            return View(ViewModel);
         }
 
         [HttpPost]
         public IActionResult SetUpTwitter(IFormCollection form)
         {
-            var comp = _context.Companies.Where(x => x.Id == form["Id"]).FirstOrDefault();
-            comp.Twitter = form["Twitter"];
+            var comp = _context.Companies.Where(x => x.Id == form["Comp.Id"]).FirstOrDefault();
+            comp.Twitter = form["Comp.Twitter"];
+            if(form["Home.Twitter"][0] == "true")
+            {
+                var home = _context.HomePages.Where(x => x.Id == form["Home.Id"]).FirstOrDefault();
+                home.Twitter = true;
+            }
+            if (comp.About)
+            {
+                if(form["About.Twitter"][0] == "true")
+                {
+                    var about = _context.AboutPages.Where(x => x.Id == form["About.Id"]).FirstOrDefault();
+                    about.Twitter = true;
+                }
+            }
             _context.SaveChanges();
-            return View();
+          
+            if (comp.ContactChoice == true)
+            {
+                return RedirectToAction("SetUpContact", new { id = comp.Id });
+            }
+            else if (comp.ScheduleChoice == true)
+            {
+                return RedirectToAction("SetUpSchedule", new { id = comp.Id });
+            }
+            else if (comp.SetupComplete)
+            {
+                return RedirectToAction("HomePage", "CompanyHome", new { id = comp.Id });
+            }
+            else
+            {
+                return RedirectToAction("InitialSetup", "CompanyHome", new { id = comp.Id });
+            }
         }
 
+        public IActionResult SetUpContact(string id)
+        {
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            
+            return View(comp);
+        }
 
+        [HttpPost]
+        public IActionResult SetUpContact(IFormCollection form)
+        {
+            var comp = _context.Companies.Where(x => x.Id == form["Id"]).FirstOrDefault();
+            if (comp.ScheduleChoice == true)
+            {
+                return RedirectToAction("SetUpSchedule", new { id = comp.Id });
+            }
+            else if (comp.SetupComplete)
+            {
+                return RedirectToAction("HomePage", "CompanyHome", new { id = comp.Id });
+            }
+            else
+            {
+                return RedirectToAction("InitialSetup", "CompanyHome", new { id = comp.Id });
+            }
+        }
 
+        public IActionResult SetUpSchedule(string id)
+        {
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            Scheduler newScheduler = new Scheduler()
+            {
+                CompanyId = comp.Id,
+            };
+            _context.SchedulePages.Add(newScheduler);
+            _context.SaveChanges();
+            SetupViewModel ViewModel = new SetupViewModel()
+            {
+                Comp = comp,
+                Scheduler = newScheduler
+            };
 
+            return View(ViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult SetUpSchedule(IFormCollection form)
+        {
+            var comp = _context.Companies.Where(x => x.Id == form["Comp.Id"]).FirstOrDefault();
+            var sched = _context.SchedulePages.Where(x => x.Id == form["Scheduler.Id"]).FirstOrDefault();
+            sched.NavTag = form["navTag"];
+            sched.Type = form["Type"];
+            _context.SaveChanges();
+            return RedirectToAction("InitialSetup","CompanyHome");
+        }
 
         public IActionResult GetCharge(string id)
         {

@@ -26,5 +26,6 @@ namespace Capstone.Data
         public DbSet<HomeContainer> HomeContainers { get; set; }
         public DbSet<AboutContainer> AboutContainers { get; set; }
         public DbSet<ContactContainer> ContactContainers { get; set; }
+        public DbSet<Scheduler> SchedulePages { get; set; }
     }
 }

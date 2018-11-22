@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace Capstone.Controllers
 {
     public class CompanyHomeController : Controller
@@ -102,8 +103,14 @@ namespace Capstone.Controllers
                 HomeContainer cont = new HomeContainer() { DivSection = (i+1), HomeId = company.Id };
                 containers.Add(cont);
             }
+            HomePageViewModel ViewModel = new HomePageViewModel()
+            {
+                Containers = containers,
+                Comp = company,
+                Home = home
+            };
             TempData["containerCount"] = loops.ToString();
-            return View(containers);
+            return View(ViewModel);
         }
 
         [HttpPost]
@@ -113,7 +120,61 @@ namespace Capstone.Controllers
 
             var company = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
-            if(pic1 != null || pic2 != null || pic3 != null)
+            if (form["map+1"]=="on" || form["map+2"] == "on" || form["map+3"] == "on")
+            {
+                if(form["map+1"] == "on")
+                {
+                    HomeContainer newMap = new HomeContainer();
+                    newMap.DivSection = 1;
+                    newMap.HomeId = home.Id;
+                    newMap.Maps = true;
+                    _context.HomeContainers.Add(newMap);
+                }
+                if (form["map+2"] == "on")
+                {
+                    HomeContainer newMap = new HomeContainer();
+                    newMap.DivSection = 2;
+                    newMap.HomeId = home.Id;
+                    newMap.Maps = true;
+                    _context.HomeContainers.Add(newMap);
+                }
+                if (form["map+3"] == "on")
+                {
+                    HomeContainer newMap = new HomeContainer();
+                    newMap.DivSection = 3;
+                    newMap.HomeId = home.Id;
+                    newMap.Maps = true;
+                    _context.HomeContainers.Add(newMap);
+                }
+            }
+            if (form["twitter+1"] == "on" || form["twitter+2"] == "on" || form["twitter+3"] == "on")
+            {
+                if (form["twitter+1"] == "on")
+                {
+                    HomeContainer newMap = new HomeContainer();
+                    newMap.DivSection = 1;
+                    newMap.HomeId = home.Id;
+                    newMap.Twitter = true;
+                    _context.HomeContainers.Add(newMap);
+                }
+                if (form["twitter+2"] == "on")
+                {
+                    HomeContainer newMap = new HomeContainer();
+                    newMap.DivSection = 2;
+                    newMap.HomeId = home.Id;
+                    newMap.Twitter = true;
+                    _context.HomeContainers.Add(newMap);
+                }
+                if (form["twitter+3"] == "on")
+                {
+                    HomeContainer newMap = new HomeContainer();
+                    newMap.DivSection = 3;
+                    newMap.HomeId = home.Id;
+                    newMap.Twitter = true;
+                    _context.HomeContainers.Add(newMap);
+                }
+            }
+            if (pic1 != null || pic2 != null || pic3 != null)
             {
                 if(pic1 != null)
                 {
@@ -184,7 +245,7 @@ namespace Capstone.Controllers
 
         public IActionResult HomePage(string id)
         {
-            ViewData["CompanyId"] = id;
+            TempData["CompanyId"] = id;
             ViewData["Theme"] = "bootstrap.css";
             var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();

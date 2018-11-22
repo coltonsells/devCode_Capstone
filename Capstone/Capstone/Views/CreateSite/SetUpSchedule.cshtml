@@ -1,0 +1,27 @@
+﻿@model Capstone.Models.SetupViewModel
+@{
+    ViewData["Title"] = "SetUpSchedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+<h2>SetUpSchedule</h2>
+<div class="container">
+    <div>
+        Customers can now schedule appointments with you.
+    </div>
+    <div>
+        First, What would you like to the name of the schedule page to appear on your navbar as?
+        <input type="text" name="navTag" />
+    </div>
+    <div>
+        Next, what type of appointments will the customer be scheduling?
+        <input type="text" name="Type" />
+    </div>
+    <div>
+        @Html.HiddenFor(x => x.Scheduler.Id)
+        @Html.HiddenFor(x => x.Comp.Id)
+        <input type="submit" class="btn btn-primary"/>
+    </div>
+</div>
+}

@@ -19,7 +19,43 @@
                 foreach (var cont in Model.Containers)
                 {
                     var contImg = "";
-                    if (cont.Image != null)
+                    if (cont.Maps)
+                    {
+                        <div id="map" class="@bootContainers2">
+                            <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                            </script>
+                            <script async defer
+                                    src="@Model.Comp.srcKey">
+                            </script>
+                        </div>
+                    }
+                    else if (cont.Twitter)
+                    {
+                        <div class="@bootContainers2">
+                            @{
+                                string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                            }
+                            <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            @*How to generate the href attribute from the users twitter url?*@
+                        </div>
+                    }
+                    else if (cont.Image != null)
                     {
                         var base64 = Convert.ToBase64String(cont.Image);
                         contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -38,7 +74,44 @@
                     if (cont.DivSection == 1)
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers2">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers2">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -52,7 +125,43 @@
                     else
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers1">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers1">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -72,7 +181,43 @@
                     if (cont.DivSection == 3)
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers2">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers2">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -86,7 +231,43 @@
                     else
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers1">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers1">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -106,7 +287,43 @@
                     if (cont.DivSection == 3 || cont.DivSection == 4)
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers2">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers2">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -120,7 +337,43 @@
                     else
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers1">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers1">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -140,7 +393,43 @@
                     if (cont.DivSection == 1 || cont.DivSection == 4)
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers2">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers2">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -154,7 +443,43 @@
                     else
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers1">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers1">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -174,7 +499,43 @@
                     if (cont.DivSection == 1 || cont.DivSection == 2)
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers2">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers2">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -188,7 +549,43 @@
                     else
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers1">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers1">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -208,7 +605,43 @@
                     if (cont.DivSection == 5)
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers2">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers2">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -222,7 +655,43 @@
                     else
                     {
                         var contImg = "";
-                        if (cont.Image != null)
+                        if (cont.Maps)
+                        {
+                            <div id="map" class="@bootContainers1">
+                                <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                                </script>
+                                <script async defer
+                                        src="@Model.Comp.srcKey">
+                                </script>
+                            </div>
+                        }
+                        else if (cont.Twitter)
+                        {
+                            <div class="@bootContainers1">
+                                @{
+                                    string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                                }
+                                <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                @*How to generate the href attribute from the users twitter url?*@
+                            </div>
+                        }
+                        else if (cont.Image != null)
                         {
                             var base64 = Convert.ToBase64String(cont.Image);
                             contImg = String.Format("data:image/gif;base64,{0}", base64);
@@ -239,18 +708,54 @@
             {
                 foreach (var cont in Model.Containers)
                 {
-                        var contImg = "";
-                        if (cont.Image != null)
-                        {
-                            var base64 = Convert.ToBase64String(cont.Image);
-                            contImg = String.Format("data:image/gif;base64,{0}", base64);
-                            <div class="@bootContainers1" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
-                        }
-                        else
-                        {
-                            <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
-                        }
-                    
+                    var contImg = "";
+                    if (cont.Maps)
+                    {
+                        <div id="map" class="@bootContainers1">
+                            <script>
+
+                        function initMap() {
+                            var myLatLng = { lat: @Model.Comp.Lat, lng: @Model.Comp.Long };
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                    });
+
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          title: 'Hello World!'
+                        });
+                      }
+                            </script>
+                            <script async defer
+                                    src="@Model.Comp.srcKey">
+                            </script>
+                        </div>
+                    }
+                    else if (cont.Twitter)
+                    {
+                        <div class="@bootContainers1">
+                            @{
+                                string twitterLink = "https://twitter.com/" + Model.Comp.Twitter + "?ref_src=twsrc%5Etfw";
+                            }
+                            <a class="twitter-timeline" data-height="500" href="@twitterLink"></a>
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            @*How to generate the href attribute from the users twitter url?*@
+                        </div>
+                    }
+                    else if (cont.Image != null)
+                    {
+                        var base64 = Convert.ToBase64String(cont.Image);
+                        contImg = String.Format("data:image/gif;base64,{0}", base64);
+                        <div class="@bootContainers1" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                    }
+                    else
+                    {
+                        <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                    }
+
                 }
             }
         }

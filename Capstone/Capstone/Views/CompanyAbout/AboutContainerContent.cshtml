@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Capstone.Models.AboutContainer>
+﻿@model Capstone.Models.AboutViewModel
 @{
     ViewData["Title"] = "AboutContainerContent";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,15 +22,25 @@
 
             }
 
-            @foreach (var cont in Model)
+            @foreach (var cont in Model.Containers)
             {
                 number = cont.DivSection.ToString();
                 <p>Do you want an image or text for this container?</p>
                 <div class="row" id="text">
                     <button class="btn btn-primary" type="button" id="text+@number">Text</button>
                     <button class="btn btn-primary" type="button" id="picButton+@number">Image</button>
+                    @if (Model.About.Maps)
+                    {
+                        <input class="checkbox" type="radio" id="checkBoxMaps+@number" style="display:inline" name="map+@number" />
+                        <label for="checkBoxMaps+@number" id="mapsLabel+@number" style="display:inline">Maps</label>
+                    }
+                    @if (Model.About.Twitter)
+                    {
+                        <input class="checkbox" type="radio" id="checkBoxTwitter+@number" style="display:inline" name="twitter+@number" />
+                        <label for="checkBoxTwitter+@number" id="twitterLabel+@number" style="display:inline">Twitter</label>
+                    }
                     <script>
-                    document.getElementById("text+@number").addEventListener("click", function () {
+                   document.getElementById("text+@number").addEventListener("click", function () {
                         document.getElementById("textChoice+@number").style.display = "block";
                         document.getElementById("picChoice+@number").style.display = "none";
                     });
@@ -38,7 +48,47 @@
                     document.getElementById("picButton+@number").addEventListener("click", function () {
                         document.getElementById("picChoice+@number").style.display = "block";
                         document.getElementById("textChoice+@number").style.display = "none";
-                    })
+                    });
+
+                    document.getElementById("checkBoxMaps+@number").addEventListener("click", function () {
+                        if (document.getElementById("text+@number").style.display == "none") {
+                            document.getElementById("text+@number").style.display = "inline";
+                            document.getElementById("picButton+@number").style.display = "inline";
+                            document.getElementById("checkBoxTwitter+@number").style.display = "inline";
+                            document.getElementById("twitterLabel+@number").style.display = "inline";
+                            document.getElementById("checkBoxMaps+@number").checked = false;
+                        }
+                        else {
+                            document.getElementById("text+@number").style.display = "none";
+                            document.getElementById("picButton+@number").style.display = "none";
+                            document.getElementById("checkBoxTwitter+@number").style.display = "none";
+                            document.getElementById("twitterLabel+@number").style.display = "none";
+                            document.getElementById("picChoice+@number").style.display = "none";
+                            document.getElementById("textChoice+@number").style.display = "none";
+                            document.getElementById("checkBoxMaps+@number").checked = true;
+                        }
+                    });
+                    document.getElementById("checkBoxTwitter+@number").addEventListener("click", function () {
+                        if (document.getElementById("text+@number").style.display == "none") {
+                            document.getElementById("text+@number").style.display = "inline";
+                            document.getElementById("picButton+@number").style.display = "inline";
+                            document.getElementById("checkBoxMaps+@number").style.display = "inline";
+                            document.getElementById("mapsLabel+@number").style.display = "inline";
+                            document.getElementById("checkBoxTwitter+@number").checked = false;
+
+
+                        }
+                        else {
+                            document.getElementById("text+@number").style.display = "none";
+                            document.getElementById("picButton+@number").style.display = "none";
+                            document.getElementById("checkBoxMaps+@number").style.display = "none"
+                            document.getElementById("mapsLabel+@number").style.display = "none";
+                            document.getElementById("picChoice+@number").style.display = "none";
+                            document.getElementById("textChoice+@number").style.display = "none";
+                            document.getElementById("checkBoxTwitter+@number").checked = true;
+
+                        }
+                    });
                     </script>
                 </div>
                 string picNumber = "pic" + number;

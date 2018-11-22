@@ -100,7 +100,13 @@ namespace Capstone.Controllers
                 };
                 containers.Add(newCont);
             }
-            return View(containers);
+            AboutViewModel ViewModel = new AboutViewModel()
+            {
+                Comp = comp,
+                About = about,
+                Containers = containers
+            };
+            return View(ViewModel);
         }
 
         [HttpPost]
@@ -108,6 +114,108 @@ namespace Capstone.Controllers
         {
             var company = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
             var about = _context.AboutPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            if (form["map+1"] == "on" || form["map+2"] == "on" || form["map+3"] == "on" || form["map+4"] == "on" || form["map+5"] == "on" || form["map+6"] == "on")
+            {
+                if (form["map+1"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 1;
+                    newMap.AboutId = about.Id;
+                    newMap.Maps = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+                if (form["map+2"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 2;
+                    newMap.AboutId = about.Id;
+                    newMap.Maps = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+                if (form["map+3"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 3;
+                    newMap.AboutId = about.Id;
+                    newMap.Maps = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+                if (form["map+4"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 4;
+                    newMap.AboutId = about.Id;
+                    newMap.Maps = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+                if (form["map+5"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 5;
+                    newMap.AboutId = about.Id;
+                    newMap.Maps = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+                if (form["map+6"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 6;
+                    newMap.AboutId = about.Id;
+                    newMap.Maps = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+            }
+            if (form["twitter+1"] == "on" || form["twitter+2"] == "on" || form["twitter+3"] == "on" || form["twitter+4"] == "on" || form["twitter+5"] == "on" || form["twitter+6"] == "on")
+            {
+                if (form["twitter+1"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 1;
+                    newMap.AboutId = about.Id;
+                    newMap.Twitter = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+                if (form["twitter+2"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 2;
+                    newMap.AboutId = about.Id;
+                    newMap.Twitter = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+                if (form["twitter+3"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 3;
+                    newMap.AboutId = about.Id;
+                    newMap.Twitter = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+                if (form["twitter+4"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 4;
+                    newMap.AboutId = about.Id;
+                    newMap.Twitter = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+                if (form["twitter+5"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 5;
+                    newMap.AboutId = about.Id;
+                    newMap.Twitter = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+                if (form["twitter+6"] == "on")
+                {
+                    AboutContainer newMap = new AboutContainer();
+                    newMap.DivSection = 6;
+                    newMap.AboutId = about.Id;
+                    newMap.Twitter = true;
+                    _context.AboutContainers.Add(newMap);
+                }
+            }
             if (pic1 != null || pic2 != null || pic3 != null || pic4 != null || pic5 != null || pic6 != null)
             {
                 if (pic1 != null)
