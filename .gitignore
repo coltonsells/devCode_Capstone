@@ -59,6 +59,7 @@ StyleCopReport.xml
 
 # Files built by Visual Studio
 *_i.c
+*ApiKeys.cs
 *_p.c
 *_i.h
 *.ilk
