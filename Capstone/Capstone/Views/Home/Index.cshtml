@@ -1,13 +1,23 @@
-﻿@{
+﻿@model Capstone.Models.HomePageViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
+@*@{
+    var imgSrc = "Hello";
+    if (Model.Comp. != null)
+    {
+        var base64 = Convert.ToBase64String(Model.EventPicture);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+    else
+    {
+        imgSrc = "https://images.pexels.com/photos/534031/pexels-photo-534031.jpeg";
+    }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+}*@
+
+<div id="myJumbotron" class="jumbotron" data-ride="carousel" data-interval="6000">
+
     <div class="carousel-inner" role="listbox">
         <div class="item active">
             <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />

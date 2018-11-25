@@ -313,6 +313,7 @@ namespace Capstone.Controllers
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
             Contact contact = new Contact() { NavTag = "none" };
+            Scheduler sched = new Scheduler() { NavTag = "none" };
             if (company.About)
             {
                 about = _context.AboutPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
@@ -321,9 +322,14 @@ namespace Capstone.Controllers
             {
                 contact = _context.ContactPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             }
+            if (company.Scheduler)
+            {
+                sched = _context.SchedulePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            }
             ViewData["homeNav"] = home.NavTag;
             ViewData["aboutNav"] = about.NavTag;
             ViewData["contactNav"] = contact.NavTag;
+            ViewData["schedulerNav"] = sched.NavTag;
             List<AboutContainer> containers = _context.AboutContainers.Where(x => x.AboutId == about.Id).ToList();
             containers = containers.OrderBy(x => x.DivSection).ToList();
             AboutViewModel ViewModel = new AboutViewModel()

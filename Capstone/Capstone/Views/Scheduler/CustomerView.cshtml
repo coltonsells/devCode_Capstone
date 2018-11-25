@@ -1,0 +1,38 @@
+﻿@model Capstone.Models.SchedulerViewModel
+@{
+    ViewData["Title"] = "CustomerView";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<h2>Schedule a @Model.Scheduler.Type</h2>
+@using (Html.BeginForm())
+{
+<div class="container">
+    <div>
+        <label asp-for="@Model.Event.StartTime" class="control-label"></label>
+        @Html.EditorFor(e => e.Event.StartTime)
+        <span asp-validation-for="Event.StartTime" class="text-danger"></span>
+        <br />
+    </div>
+    <div>
+        <label asp-for="@Model.Event.FirstName" class="control-label"></label>
+        @Html.EditorFor(e => e.Event.FirstName)
+        <span asp-validation-for="Event.FirstName" class="text-danger"></span>
+        <br />
+    </div>
+    <div>
+        <label asp-for="@Model.Event.LastName" class="control-label"></label>
+        @Html.EditorFor(e => e.Event.LastName)
+        <span asp-validation-for="Event.LastName" class="text-danger"></span>
+        <br />
+    </div>
+    <div>
+        <label asp-for="@Model.Event.Notes" class="control-label"></label>
+        @Html.EditorFor(e => e.Event.Notes)
+        <span asp-validation-for="Event.Notes" class="text-danger"></span>
+        <br />
+    </div>
+    @Html.HiddenFor(x => x.Comp.Id)
+    <button type="submit" class="btn btn-primary">SChedule</button>
+</div>
+}

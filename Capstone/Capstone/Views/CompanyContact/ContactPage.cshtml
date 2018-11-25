@@ -3,11 +3,18 @@
     ViewData["Title"] = "ContactPage";
     Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
+@{ 
+    var bootstrap = "col-sm-12";
+    if (Model.Comp.ContactChoice)
+    {
+        bootstrap = "col-sm-6";
+    }
 
+}
 <h2>ContactPage</h2>
 
 <div class="container">
-    <div class="row">
+    <div class="@bootstrap">
         @{
             foreach (var cont in Model.Containers)
             {
@@ -25,4 +32,20 @@
             }
         }
     </div>
-</div>
+    @using (Html.BeginForm())
+    {
+        @if (Model.Comp.ScheduleChoice)
+        {
+    <div class="@bootstrap">
+        <label class="control-label">Name</label>
+        <input type="text" name="name" />
+        <label class="control-label">Comments</label>
+        <textarea name="comments"></textarea>
+        @Html.HiddenFor(x => x.Comp.Id)
+        <button type="submit">Submit</button>
+
+    </div>
+         }
+
+     }
+    </div>

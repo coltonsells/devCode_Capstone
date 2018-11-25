@@ -148,6 +148,7 @@ namespace Capstone.Controllers
             if(form["ScheduleChoice"][0] == "true")
             {
                 comp.ScheduleChoice = true;
+                comp.Scheduler = true;
             }
             _context.SaveChanges();
             if (comp.MapChoice)

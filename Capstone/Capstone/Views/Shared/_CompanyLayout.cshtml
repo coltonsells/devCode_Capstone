@@ -44,6 +44,10 @@
                         <li><a asp-area="" asp-controller="CompanyContact" asp-action="ContactPage" asp-route-id="@ViewData["CompanyId"]">@ViewData["contactNav"]</a></li>
 
                     }
+                    @if ((string)ViewData["schedulerNav"] != "none")
+                    {
+                        <li><a asp-area="" asp-controller="Scheduler" asp-action="Index" asp-route-id="@ViewData["CompanyId"]">@ViewData["schedulerNav"]</a></li>
+                    }
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

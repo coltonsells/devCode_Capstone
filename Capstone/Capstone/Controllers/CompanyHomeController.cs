@@ -245,7 +245,7 @@ namespace Capstone.Controllers
 
         public IActionResult HomePage(string id)
         {
-            TempData["CompanyId"] = id;
+            ViewData["CompanyId"] = id;
             ViewData["Theme"] = "bootstrap.css";
             var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
@@ -253,6 +253,7 @@ namespace Capstone.Controllers
             var jumbo = _context.HomeJumbos.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
             Contact contact = new Contact() { NavTag = "none" };
+            Scheduler sched = new Scheduler() { NavTag = "none" };
             if (company.About)
             {
                 about = _context.AboutPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
@@ -261,9 +262,14 @@ namespace Capstone.Controllers
             {
                 contact = _context.ContactPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             }
+            if (company.Scheduler)
+            {
+                sched = _context.SchedulePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            }
             ViewData["homeNav"] = home.NavTag;
             ViewData["aboutNav"] = about.NavTag;
             ViewData["contactNav"] = contact.NavTag;
+            ViewData["schedulerNav"] = sched.NavTag;
             List<HomeContainer> containers = _context.HomeContainers.Where(x => x.HomeId == home.Id).ToList();
             containers = containers.OrderBy(x => x.DivSection).ToList();
             HomePageViewModel ViewModel = new HomePageViewModel()

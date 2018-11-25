@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" PrivateAssets="All" />
     <PackageReference Include="React.AspNet" Version="3.4.1" />
     <PackageReference Include="React.Web.Mvc4" Version="3.4.1" />
+    <PackageReference Include="Sendgrid" Version="9.10.0" />
     <PackageReference Include="Stripe.net" Version="21.4.1" />
   </ItemGroup>
 

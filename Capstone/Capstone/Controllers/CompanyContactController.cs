@@ -138,6 +138,7 @@ namespace Capstone.Controllers
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
             Contact contact = new Contact() { NavTag = "none" };
+            Scheduler sched = new Scheduler() { NavTag = "none" };
             if (company.About)
             {
                 about = _context.AboutPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
@@ -146,9 +147,14 @@ namespace Capstone.Controllers
             {
                 contact = _context.ContactPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             }
+            if (company.Scheduler)
+            {
+                sched = _context.SchedulePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            }
             ViewData["homeNav"] = home.NavTag;
             ViewData["aboutNav"] = about.NavTag;
             ViewData["contactNav"] = contact.NavTag;
+            ViewData["schedulerNav"] = sched.NavTag;
             List<ContactContainer> containers = _context.ContactContainers.Where(x => x.ContactId == contact.Id).ToList();
             containers = containers.OrderBy(x => x.DivSection).ToList();
             ContactViewModel ViewModel = new ContactViewModel()
@@ -159,8 +165,18 @@ namespace Capstone.Controllers
             };
             return View(ViewModel);
         }
-     
-    private async Task<ContactContainer> StoreContactPicture(ContactContainer img, Contact contact, IFormFile picture)
+
+        [HttpPost]
+        public async Task<IActionResult> ContactPage(IFormCollection form)
+        {
+            var compId = form["Comp.Id"];
+            var subject = form["name"] + " Comment";
+            var body = form["comments"];
+            await Sendgrid.SendMail("coltonsells25@gmail.com", subject, body);
+            return RedirectToAction("ContactPage", new { id = compId});
+        }
+
+        private async Task<ContactContainer> StoreContactPicture(ContactContainer img, Contact contact, IFormFile picture)
     {
         if (picture != null)
         {
