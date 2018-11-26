@@ -11,5 +11,6 @@ namespace Capstone.Models
         public About About { get; set; }
         public AboutContainer Container { get; set; }
         public List<AboutContainer> Containers { get; set; }
+        public string UserId { get; set; }
     }
 }

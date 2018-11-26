@@ -336,7 +336,8 @@ namespace Capstone.Controllers
             {
                 Comp = company,
                 About = about,
-                Containers = containers
+                Containers = containers,
+                UserId = User.Identity.GetUserId()
             };
             return View(ViewModel);
         }

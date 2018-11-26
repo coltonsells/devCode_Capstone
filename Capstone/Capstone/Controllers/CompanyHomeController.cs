@@ -274,6 +274,7 @@ namespace Capstone.Controllers
             containers = containers.OrderBy(x => x.DivSection).ToList();
             HomePageViewModel ViewModel = new HomePageViewModel()
             {
+                UserId = User.Identity.GetUserId(),
                 Comp = company,
                 Home = home,
                 Containers = containers,
@@ -386,6 +387,77 @@ namespace Capstone.Controllers
             {
                 return View();
             }
+        }
+
+        public async Task<IActionResult> EditHomeContainer(string id, int divSection)
+        {
+            ViewData["Theme"] = "bootstrap.css";
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            var home = _context.HomePages.Where(x => x.CompanyId == id).FirstOrDefault();
+            var container = _context.HomeContainers.Where(x => x.HomeId == home.Id).Where(x => x.DivSection == divSection).FirstOrDefault();
+            HomePageViewModel ViewModel = new HomePageViewModel()
+            {
+                Home = home,
+                Container = container,
+                Comp = comp
+            };
+            return View(ViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditHomeContainer(IFormCollection form, IFormFile pic1, IFormFile pic2, IFormFile pic3)
+        {
+            var divSection = form["Container.DivSection"];
+            var company = _context.Companies.Where(x => x.Id == form["Comp.Id"]).FirstOrDefault();
+            var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            var container = _context.HomeContainers.Where(x => x.Id == form["Container.Id"]).FirstOrDefault();
+            container.Maps = false;
+            container.Twitter = false;
+            container.Text = null;
+            container.Image = null;
+            if (form["map+" + divSection] == "on")
+            {
+                container.Maps = true;
+            }
+           else if (form["twitter+" + divSection] == "on")
+            {
+                container.Twitter = true;
+                  
+            }
+           else if (pic1 != null)
+            {   
+                container = await StoreHomePicture(container, home, pic1);
+            }
+            else if (pic2 != null)
+            {
+                container = await StoreHomePicture(container, home, pic2);
+            }
+            else if (pic3 != null)
+            {
+                container = await StoreHomePicture(container, home, pic3);
+            }
+            else
+            {
+                string check = "textArea+" + divSection;
+                if (form[check] != "")
+                {
+                    string align = "Alignment+" + divSection;
+                    string color = "Color+" + divSection;
+                    string font = "Font+" + divSection;
+                    string size = "Size+" + divSection;
+                    string BgColor = "BackgroundColor+" + divSection;
+                    container.Text = form[check];
+                    container.Align = form[align];
+                    container.Color = form[color];
+                    container.Font = form[font];
+                    container.BgColor = form[BgColor];
+                    container.FontSize = form[size];
+                }
+            }
+            _context.SaveChanges();
+            return RedirectToAction("HomePage", new { id = company.Id });
+            
+         
         }
     }
 }

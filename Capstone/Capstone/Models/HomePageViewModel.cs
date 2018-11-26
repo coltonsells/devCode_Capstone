@@ -7,6 +7,7 @@ namespace Capstone.Models
 {
     public class HomePageViewModel
     {
+        public string UserId { get; set; }
         public Company Comp { get; set; }
         public Home Home { get; set; }
         public HomeContainer Container { get; set; }

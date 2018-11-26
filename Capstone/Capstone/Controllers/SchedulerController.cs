@@ -42,6 +42,7 @@ namespace Capstone.Controllers
 
         public IActionResult CompanyView(string id)
         {
+            ViewData["Theme"] = "bootstrap.css";
             var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
@@ -70,6 +71,12 @@ namespace Capstone.Controllers
                 Events = events
             };
             return View(ViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult CompanyView()
+        {
+            return View();
         }
         public IActionResult AccessDenied(string id)
         {
@@ -154,10 +161,7 @@ namespace Capstone.Controllers
             return RedirectToAction("CustomerView", new { id = comp.Id});
         }
 
-        public IActionResult CompanyView()
-        {
-            return View();
-        }
+     
         // GET: Scheduler/Details/5
         public ActionResult Details(int id)
         {

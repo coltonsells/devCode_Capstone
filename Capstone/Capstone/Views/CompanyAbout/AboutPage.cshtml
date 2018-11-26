@@ -4,13 +4,15 @@
     Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
 
-@{ 
+@{
     string bootContainers1 = "col-sm-6";
     string bootContainers2 = "col-sm-12";
 }
 
-<h2>AboutPage</h2>
-
+@if (Model.Comp.CreatorId == Model.UserId)
+{
+    <button type="button" id="editMode">Edit Mode</button>
+}
 <div class="container">
     <div class="row">
         @{
@@ -65,6 +67,8 @@
                     {
                         <div class="@bootContainers2" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
                     }
+                    <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditAboutContainer", "CompanyAbout", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
+
                 }
             }
             else if (Model.About.ContainerType == "4")
@@ -171,6 +175,8 @@
                         {
                             <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
                         }
+                        <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditAboutContainer", "CompanyAbout", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
+
                     }
                 }
             }
@@ -277,6 +283,8 @@
                         {
                             <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
                         }
+                        <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditAboutContainer", "CompanyAbout", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
+
                     }
                 }
             }
@@ -383,6 +391,8 @@
                         {
                             <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
                         }
+                        <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditAboutContainer", "CompanyAbout", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
+
                     }
                 }
             }
@@ -489,6 +499,8 @@
                         {
                             <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
                         }
+                        <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditAboutContainer", "CompanyAbout", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
+
                     }
                 }
             }
@@ -595,6 +607,8 @@
                         {
                             <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
                         }
+                        <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditAboutContainer", "CompanyAbout", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
+
                     }
                 }
             }
@@ -701,6 +715,8 @@
                         {
                             <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
                         }
+                        <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditAboutContainer", "CompanyAbout", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
+
                     }
                 }
             }
@@ -755,11 +771,33 @@
                     {
                         <div class="@bootContainers1" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
                     }
+                    <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditAboutContainer", "CompanyAbout", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
 
                 }
             }
         }
     </div>
+    @if (Model.Comp.CreatorId == Model.UserId)
+    {
+        <script>
+            document.getElementById("editMode").addEventListener("click", function () {
+
+                var buttons = document.getElementsByClassName("editButton");
+                if (buttons[0].style.display == "none") {
+                    for (i = 0; i < buttons.length; i++) {
+                        buttons[i].style.display = "block";
+                    }
+                }
+                else {
+                    for (i = 0; i < buttons.length; i++) {
+                        buttons[i].style.display = "none";
+                    }
+                }
+
+            });
+
+        </script>
+    }
     <style>
         /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */

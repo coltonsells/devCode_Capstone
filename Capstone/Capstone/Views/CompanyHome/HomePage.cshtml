@@ -17,12 +17,16 @@
     int containerSplit = 12 / Model.Containers.Count;
     string bootContainers = "col-sm-" + containerSplit;
 }
-<title>Simple Markers</title>
+
 
 <div class="jumbotron" style="min-height:250px;background-image:Url(@imgSrc);background-size:cover;display:flex;justify-content:@Model.Jumbo.TextAlign">
-    <h2 class="col-sm-4" style="text-align:@Model.Jumbo.TextAlign;color:@Model.Jumbo.TextColor;font-size:@Model.Jumbo.TextSize;font-family:@Model.Jumbo.TextFont">@Model.Jumbo.Text</h2>
-</div>
+    <h2 class="col-sm-4" style="white-space: pre-line; text-align:@Model.Jumbo.TextAlign;color:@Model.Jumbo.TextColor;font-size:@Model.Jumbo.TextSize;font-family:@Model.Jumbo.TextFont">@Model.Jumbo.Text</h2>
 
+</div>
+@if (Model.Comp.CreatorId == Model.UserId)
+{
+    <button type="button" id="editMode" name="editMode">Edit Mode</button>
+}
 <br />
 <div class="container">
     <div class="row">
@@ -76,8 +80,10 @@
                 }
                 else
                 {
-                    <div class="@bootContainers" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+
+                    <div class="@bootContainers" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font"><span style="white-space: pre-line">@cont.Text</span></div>
                 }
+                <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditHomeContainer", "CompanyHome", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
             }
         }
     </div>
@@ -96,16 +102,37 @@
                 }
     </style>
     <style>
-         /* Always set the map height explicitly to define the size of the div
+        /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
-         #map {
-             height: 500px;
-         }
-         /* Optional: Makes the sample page fill the window. */
-         html, body {
-             height: 100%;
-             margin: 0;
-             padding: 0;
-         }
+        #map {
+            height: 500px;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
     </style>
+    @if (Model.Comp.CreatorId == Model.UserId)
+    {
+        <script>
+            document.getElementById("editMode").addEventListener("click", function () {
+
+                var buttons = document.getElementsByClassName("editButton");
+                if (buttons[0].style.display == "none") {
+                    for (i = 0; i < buttons.length; i++) {
+                        buttons[i].style.display = "block";
+                    }
+                }
+                else {
+                    for (i = 0; i < buttons.length; i++) {
+                        buttons[i].style.display = "none";
+                    }
+                }
+
+            });
+
+        </script>
+    }
 </div>
