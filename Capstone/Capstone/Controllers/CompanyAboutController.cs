@@ -424,27 +424,89 @@ namespace Capstone.Controllers
             }
         }
 
-        // GET: CompanyAbout/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> EditAboutContainer(string id, int divSection)
         {
-            return View();
+            ViewData["Theme"] = "bootstrap.css";
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            var about = _context.AboutPages.Where(x => x.CompanyId == id).FirstOrDefault();
+            var container = _context.AboutContainers.Where(x => x.AboutId == about.Id).Where(x => x.DivSection == divSection).FirstOrDefault();
+            AboutViewModel ViewModel = new AboutViewModel()
+            {
+                About = about,
+                Container = container,
+                Comp = comp,
+                UserId = User.Identity.GetUserId()
+            };
+            return View(ViewModel);
         }
 
-        // POST: CompanyAbout/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> EditAboutContainer(IFormCollection form, IFormFile pic1, IFormFile pic2, IFormFile pic3, IFormFile pic4, IFormFile pic5, IFormFile pic6)
         {
-            try
+            var divSection = form["Container.DivSection"];
+            var company = _context.Companies.Where(x => x.Id == form["Comp.Id"]).FirstOrDefault();
+            var about = _context.AboutPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            var container = _context.AboutContainers.Where(x => x.Id == form["Container.Id"]).FirstOrDefault();
+            container.Maps = false;
+            container.Twitter = false;
+            container.Text = null;
+            container.Image = null;
+            if (form["map+" + divSection] == "on")
             {
-                // TODO: Add delete logic here
+                container.Maps = true;
+            }
+            else if (form["twitter+" + divSection] == "on")
+            {
+                container.Twitter = true;
 
-                return RedirectToAction(nameof(Index));
             }
-            catch
+            else if (pic1 != null)
             {
-                return View();
+                container = await StoreAboutPicture(container, about, pic1);
             }
+            else if (pic2 != null)
+            {
+                container = await StoreAboutPicture(container, about, pic2);
+            }
+            else if (pic3 != null)
+            {
+                container = await StoreAboutPicture(container, about, pic3);
+            }
+            else if (pic4 != null)
+            {
+                container = await StoreAboutPicture(container, about, pic4);
+            }
+            else if (pic5 != null)
+            {
+                container = await StoreAboutPicture(container, about, pic5);
+            }
+            else if (pic6 != null)
+            {
+                container = await StoreAboutPicture(container, about, pic6);
+            }
+            else
+            {
+                string check = "textArea+" + divSection;
+                if (form[check] != "")
+                {
+                    string align = "Alignment+" + divSection;
+                    string color = "Color+" + divSection;
+                    string font = "Font+" + divSection;
+                    string size = "Size+" + divSection;
+                    string BgColor = "BackgroundColor+" + divSection;
+                    container.Text = form[check];
+                    container.Align = form[align];
+                    container.Color = form[color];
+                    container.Font = form[font];
+                    container.BgColor = form[BgColor];
+                    container.FontSize = form[size];
+                }
+            }
+            _context.SaveChanges();
+            return RedirectToAction("AboutPage", new { id = company.Id });
+
+
         }
+
     }
 }

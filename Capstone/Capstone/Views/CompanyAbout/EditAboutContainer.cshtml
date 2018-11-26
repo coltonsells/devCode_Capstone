@@ -1,0 +1,184 @@
+﻿@model Capstone.Models.AboutViewModel
+@{
+    ViewData["Title"] = "EditAboutContainer";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<h2>EditAboutContainer</h2>
+<h2>EditHomeContainer</h2>
+
+@{
+    var number = Model.Container.DivSection.ToString();
+}
+@using (Html.BeginForm("EditAboutContainer", "CompanyAbout", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <div class="row" id="text">
+        <button class="btn btn-primary" type="button" id="text+@number">Text</button>
+        <button class="btn btn-primary" type="button" id="picButton+@number">Image</button>
+        @if (Model.About.Maps)
+        {
+            <input class="checkbox" type="radio" id="checkBoxMaps+@number" style="display:inline" name="map+@number" />
+            <label for="checkBoxMaps+@number" id="mapsLabel+@number" style="display:inline">Maps</label>
+        }
+        @if (Model.About.Twitter)
+        {
+            <input class="checkbox" type="radio" id="checkBoxTwitter+@number" style="display:inline" name="twitter+@number" />
+            <label for="checkBoxTwitter+@number" id="twitterLabel+@number" style="display:inline">Twitter</label>
+        }
+
+
+        <script>
+                    document.getElementById("text+@number").addEventListener("click", function () {
+                        document.getElementById("textChoice+@number").style.display = "block";
+                        document.getElementById("picChoice+@number").style.display = "none";
+                    });
+
+                    document.getElementById("picButton+@number").addEventListener("click", function () {
+                        document.getElementById("picChoice+@number").style.display = "block";
+                        document.getElementById("textChoice+@number").style.display = "none";
+                    });
+
+                    document.getElementById("checkBoxMaps+@number").addEventListener("click", function () {
+                        if (document.getElementById("text+@number").style.display == "none") {
+                            document.getElementById("text+@number").style.display = "inline";
+                            document.getElementById("picButton+@number").style.display = "inline";
+                            document.getElementById("checkBoxTwitter+@number").style.display = "inline";
+                            document.getElementById("twitterLabel+@number").style.display = "inline";
+                            document.getElementById("checkBoxMaps+@number").checked = false;
+                        }
+                        else {
+                            document.getElementById("text+@number").style.display = "none";
+                            document.getElementById("picButton+@number").style.display = "none";
+                            document.getElementById("checkBoxTwitter+@number").style.display = "none";
+                            document.getElementById("twitterLabel+@number").style.display = "none";
+                            document.getElementById("picChoice+@number").style.display = "none";
+                            document.getElementById("textChoice+@number").style.display = "none";
+                            document.getElementById("checkBoxMaps+@number").checked = true;
+                        }
+                    });
+                    document.getElementById("checkBoxTwitter+@number").addEventListener("click", function () {
+                        if (document.getElementById("text+@number").style.display == "none") {
+                            document.getElementById("text+@number").style.display = "inline";
+                            document.getElementById("picButton+@number").style.display = "inline";
+                            document.getElementById("checkBoxMaps+@number").style.display = "inline";
+                            document.getElementById("mapsLabel+@number").style.display = "inline";
+                            document.getElementById("checkBoxTwitter+@number").checked = false;
+
+
+                        }
+                        else {
+                            document.getElementById("text+@number").style.display = "none";
+                            document.getElementById("picButton+@number").style.display = "none";
+                            document.getElementById("checkBoxMaps+@number").style.display = "none"
+                            document.getElementById("mapsLabel+@number").style.display = "none";
+                            document.getElementById("picChoice+@number").style.display = "none";
+                            document.getElementById("textChoice+@number").style.display = "none";
+                            document.getElementById("checkBoxTwitter+@number").checked = true;
+
+                        }
+                    });
+
+
+        </script>
+    </div>
+
+    string picNumber = "pic" + number;
+
+    <div class="row" id="picChoice+@number" style="display:none">
+        <p>
+            Input the image file below
+        </p>
+        <input type="file" name="@picNumber" />
+    </div>
+    <div class="row" id="textChoice+@number" style="display:none;">
+        <div class="col-md-6">
+            <textarea type="textarea" style="width:100%;" rows="12" name="textArea+@number" id="textArea+@number"></textarea>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div>
+                    <label>Align</label>
+                </div>
+                <div>
+                    <select class="form-control" id="Alignment+@number" name="Alignment+@number">
+                        <option>--Select--</option>
+                        <option>left</option>
+                        <option>right</option>
+                        <option>center</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label>Color</label>
+                </div>
+                <div>
+                    <select class="form-control" id="Color+@number" name="Color+@number">
+                        <option>--Select--</option>
+                        <option>white</option>
+                        <option>black</option>
+                        <option>red</option>
+                        <option>blue</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label>Font</label><br />
+                </div>
+                <div>
+                    <select class="form-control" id="Font+@number" name="Font+@number">
+                        <option>--Select--</option>
+                        <option>Times New Roman</option>
+                        <option>Georgia</option>
+                        <option>Arial</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label>Size</label>
+                </div>
+                <div>
+                    <select class="form-control" id="Size+@number" name="Size+@number">
+                        <option>--Select--</option>
+                        <option>small</option>
+                        <option>smaller</option>
+                        <option>medium</option>
+                        <option>large</option>
+                        <option>larger</option>
+                        <option>x-large</option>
+                        <option>xx-large</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label>Background-Color</label>
+                </div>
+                <div>
+                    <select class="form-control" id="BackgroundColor+@number" name="BackgroundColor+@number">
+                        <option>--Select--</option>
+                        <option>White</option>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                        <option>Green</option>
+                        <option>Grey</option>
+                        <option>Orange</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Html.HiddenFor(x => x.About.Id)
+    @Html.HiddenFor(x => x.Container.Id)
+    @Html.HiddenFor(x => x.Comp.Id)
+    @Html.HiddenFor(x => x.Container.DivSection)
+    <div>
+        <input type="submit" class="btn btn-primary" />
+    </div>
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>

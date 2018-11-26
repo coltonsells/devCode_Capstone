@@ -9,7 +9,7 @@
  @{
      var number = Model.Container.DivSection.ToString();
  }
-@using (Html.BeginForm())
+@using (Html.BeginForm("EditHomeContainer", "CompanyHome", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
 <div class="row" id="text">
     <button class="btn btn-primary" type="button" id="text+@number">Text</button>
