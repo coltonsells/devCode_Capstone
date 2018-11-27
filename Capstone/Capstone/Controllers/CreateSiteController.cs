@@ -104,6 +104,10 @@ namespace Capstone.Controllers
         public ActionResult PremiumCheck()
         {
             var comp = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
+            if(comp.PremiumPaid == true)
+            {
+                return RedirectToAction("PremiumFeatures", new { id = comp.Id });
+            }
             ViewData["Theme"] = "Bootstrap.css";
             return View(comp);
         }
@@ -324,12 +328,17 @@ namespace Capstone.Controllers
         public IActionResult SetUpSchedule(string id)
         {
             var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
-            Scheduler newScheduler = new Scheduler()
+            var newScheduler = _context.SchedulePages.Where(x => x.CompanyId == comp.Id).FirstOrDefault();
+            if(newScheduler == null)
             {
-                CompanyId = comp.Id,
-            };
-            _context.SchedulePages.Add(newScheduler);
-            _context.SaveChanges();
+                newScheduler = new Scheduler()
+                {
+                    CompanyId = comp.Id,
+                };
+                _context.SchedulePages.Add(newScheduler);
+                _context.SaveChanges();
+            }
+            
             SetupViewModel ViewModel = new SetupViewModel()
             {
                 Comp = comp,
@@ -347,7 +356,14 @@ namespace Capstone.Controllers
             sched.NavTag = form["navTag"];
             sched.Type = form["Type"];
             _context.SaveChanges();
-            return RedirectToAction("InitialSetup","CompanyHome");
+            if(comp.SetupComplete = true)
+            {
+                return RedirectToAction("HomePage", "CompanyHome", new { id = comp.Id});
+            }
+            else
+            {
+                return RedirectToAction("InitialSetup", "CompanyHome");
+            }
         }
 
         public IActionResult GetCharge(string id)
@@ -387,6 +403,8 @@ namespace Capstone.Controllers
         {
             TempData["CompId"] = id;
             var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            comp.PremiumPaid = true;
+            _context.SaveChanges();
             return View(comp);
         }
 

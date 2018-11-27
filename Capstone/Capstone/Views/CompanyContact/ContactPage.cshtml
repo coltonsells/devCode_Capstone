@@ -3,49 +3,74 @@
     ViewData["Title"] = "ContactPage";
     Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
-@{ 
+@{
     var bootstrap = "col-sm-12";
     if (Model.Comp.ContactChoice)
     {
         bootstrap = "col-sm-6";
     }
 
+}@if (Model.Comp.CreatorId == Model.UserId)
+{
+    <h2><button type="button" id="editMode">Edit Mode</button></h2>
 }
-<h2>ContactPage</h2>
 
-<div class="container">
-    <div class="@bootstrap">
-        @{
-            foreach (var cont in Model.Containers)
-            {
-                var contImg = "";
-                if (cont.Image != null)
+    <div class="container">
+        <div class="@bootstrap">
+            @{
+                foreach (var cont in Model.Containers)
                 {
-                    var base64 = Convert.ToBase64String(cont.Image);
-                    contImg = String.Format("data:image/gif;base64,{0}", base64);
-                    <div class="col-sm-12" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
-                }
-                else
-                {
-                    <div class="col-sm-12" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                    var contImg = "";
+                    if (cont.Image != null)
+                    {
+                        var base64 = Convert.ToBase64String(cont.Image);
+                        contImg = String.Format("data:image/gif;base64,{0}", base64);
+                        <div class="col-sm-12" style="min-height:200px;width=100%:200px;background-image:Url(@contImg) ;background-size:cover"></div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-12" style="white-space:pre-line;background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
+                    }
+                    <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditContactContainer", "CompanyContact", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
+
                 }
             }
-        }
-    </div>
-    @using (Html.BeginForm())
-    {
-        @if (Model.Comp.ScheduleChoice)
+        </div>
+        @using (Html.BeginForm())
         {
-    <div class="@bootstrap">
-        <label class="control-label">Name</label>
-        <input type="text" name="name" />
-        <label class="control-label">Comments</label>
-        <textarea name="comments"></textarea>
-        @Html.HiddenFor(x => x.Comp.Id)
-        <button type="submit">Submit</button>
+            @if (Model.Comp.ScheduleChoice)
+            {
+                <div class="@bootstrap">
+                    <label class="control-label">Name</label>
+                    <input type="text" name="name" />
+                    <label class="control-label">Comments</label>
+                    <textarea name="comments"></textarea>
+                    @Html.HiddenFor(x => x.Comp.Id)
+                    <button type="submit">Submit</button>
 
-    </div>
-         }
+                </div>
+            }
+            @if (Model.Comp.CreatorId == Model.UserId)
+            {
+                <script>
+                    document.getElementById("editMode").addEventListener("click", function () {
 
-     }
-    </div>
+                        var buttons = document.getElementsByClassName("editButton");
+                        if (buttons[0].style.display == "none") {
+                            for (i = 0; i < buttons.length; i++) {
+                                buttons[i].style.display = "block";
+                            }
+                        }
+                        else {
+                            for (i = 0; i < buttons.length; i++) {
+                                buttons[i].style.display = "none";
+                            }
+                        }
+
+                    });
+
+                </script>
+                }
+            }
+
+        </div>

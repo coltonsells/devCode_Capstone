@@ -42,8 +42,9 @@ namespace Capstone.Controllers
 
         public IActionResult CompanyView(string id)
         {
-            ViewData["Theme"] = "bootstrap.css";
+            ViewData["CompanyId"] = id;
             var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["Theme"] = company.Theme;
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
             Contact contact = new Contact() { NavTag = "none" };
@@ -80,6 +81,7 @@ namespace Capstone.Controllers
         }
         public IActionResult AccessDenied(string id)
         {
+            ViewData["CompanyId"] = id;
             var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
@@ -106,8 +108,8 @@ namespace Capstone.Controllers
         public IActionResult CustomerView(string id)
         {
             ViewData["CompanyId"] = id;
-            ViewData["Theme"] = "bootstrap.css";
             var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["Theme"] = company.Theme;
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
             Contact contact = new Contact() { NavTag = "none" };

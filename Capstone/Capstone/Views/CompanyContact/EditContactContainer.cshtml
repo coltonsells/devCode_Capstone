@@ -1,25 +1,25 @@
-﻿@model Capstone.Models.AboutViewModel
+﻿@model Capstone.Models.ContactViewModel
 @{
-    ViewData["Title"] = "EditAboutContainer";
+    ViewData["Title"] = "EditContactContainer";
     Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
 
-<h2>EditHomeContainer</h2>
+<h2>EditContactContainer</h2>
 
 @{
     var number = Model.Container.DivSection.ToString();
 }
-@using (Html.BeginForm("EditAboutContainer", "CompanyAbout", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+@using (Html.BeginForm("EditContactContainer", "CompanyContact", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     <div class="row" id="text">
         <button class="btn btn-primary" type="button" id="text+@number">Text</button>
         <button class="btn btn-primary" type="button" id="picButton+@number">Image</button>
-        @if (Model.About.Maps)
+        @if (Model.Contact.Maps)
         {
             <input class="checkbox" type="radio" id="checkBoxMaps+@number" style="display:inline" name="map+@number" />
             <label for="checkBoxMaps+@number" id="mapsLabel+@number" style="display:inline">Maps</label>
         }
-        @if (Model.About.Twitter)
+        @if (Model.Contact.Twitter)
         {
             <input class="checkbox" type="radio" id="checkBoxTwitter+@number" style="display:inline" name="twitter+@number" />
             <label for="checkBoxTwitter+@number" id="twitterLabel+@number" style="display:inline">Twitter</label>
@@ -172,7 +172,7 @@
     </div>
 
 
-    @Html.HiddenFor(x => x.About.Id)
+    @Html.HiddenFor(x => x.Contact.Id)
     @Html.HiddenFor(x => x.Container.Id)
     @Html.HiddenFor(x => x.Comp.Id)
     @Html.HiddenFor(x => x.Container.DivSection)

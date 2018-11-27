@@ -133,8 +133,8 @@ namespace Capstone.Controllers
     public IActionResult ContactPage(string id)
         {
             ViewData["CompanyId"] = id;
-            ViewData["Theme"] = "bootstrap.css";
             var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["Theme"] = company.Theme;
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
             Contact contact = new Contact() { NavTag = "none" };
@@ -161,7 +161,8 @@ namespace Capstone.Controllers
             {
                 Comp = company,
                 Contact = contact,
-                Containers = containers
+                Containers = containers,
+                UserId = User.Identity.GetUserId()
             };
             return View(ViewModel);
         }
@@ -193,102 +194,68 @@ namespace Capstone.Controllers
 
 
 
+ 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // GET: CompanyContact
-    public ActionResult Index()
+        public async Task<IActionResult> EditContactContainer(string id, int divSection)
         {
-            return View();
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["Theme"] = comp.Theme;
+            var contact = _context.ContactPages.Where(x => x.CompanyId == id).FirstOrDefault();
+            var container = _context.ContactContainers.Where(x => x.ContactId == contact.Id).Where(x => x.DivSection == divSection).FirstOrDefault();
+            ContactViewModel ViewModel = new ContactViewModel()
+            {
+                Contact = contact,
+                Container = container,
+                Comp = comp,
+                UserId = User.Identity.GetUserId()
+            };
+            return View(ViewModel);
         }
 
-        // GET: CompanyContact/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: CompanyContact/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CompanyContact/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> EditContactContainer(IFormCollection form, IFormFile pic1, IFormFile pic2, IFormFile pic3)
         {
-            try
+            var divSection = form["Container.DivSection"];
+            var company = _context.Companies.Where(x => x.Id == form["Comp.Id"]).FirstOrDefault();
+            var contact = _context.ContactPages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
+            var container = _context.ContactContainers.Where(x => x.Id == form["Container.Id"]).FirstOrDefault();
+            container.Text = null;
+            container.Image = null;
+            
+            if (pic1 != null)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
+                container = await StoreContactPicture(container, contact, pic1);
             }
-            catch
+            else if (pic2 != null)
             {
-                return View();
+                container = await StoreContactPicture(container, contact, pic2);
             }
-        }
-
-        // GET: CompanyContact/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CompanyContact/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
+            else if (pic3 != null)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                container = await StoreContactPicture(container, contact, pic3);
             }
-            catch
+            else
             {
-                return View();
+                string check = "textArea+" + divSection;
+                if (form[check] != "")
+                {
+                    string align = "Alignment+" + divSection;
+                    string color = "Color+" + divSection;
+                    string font = "Font+" + divSection;
+                    string size = "Size+" + divSection;
+                    string BgColor = "BackgroundColor+" + divSection;
+                    container.Text = form[check];
+                    container.Align = form[align];
+                    container.Color = form[color];
+                    container.Font = form[font];
+                    container.BgColor = form[BgColor];
+                    container.FontSize = form[size];
+                }
             }
-        }
+            _context.SaveChanges();
+            return RedirectToAction("ContactPage", new { id = company.Id });
 
-        // GET: CompanyContact/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
-        // POST: CompanyContact/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

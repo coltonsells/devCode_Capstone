@@ -99,7 +99,8 @@ namespace Capstone.Areas.Identity.Pages.Account
                         Company newComp = new Company()
                         {
                             CreatorId = user.Id,
-                            SetupComplete = false
+                            SetupComplete = false,
+                            Theme = "bootstrap.css"
                         };
                         _context.Companies.Add(newComp);
                         _context.SaveChanges();

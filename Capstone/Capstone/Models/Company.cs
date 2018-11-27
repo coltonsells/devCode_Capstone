@@ -34,6 +34,7 @@ namespace Capstone.Models
         public bool ContactSetupComplete { get; set; }
         public bool AboutSetupComplete { get; set; }
         public bool SetupComplete { get; set; }
+        public bool PremiumPaid { get; set; }
 
         public string key = ApiKeys.GKey;
         public string srcKey = "https://maps.googleapis.com/maps/api/js?libraries=places&key=" + ApiKeys.GKey + "&callback=initMap";

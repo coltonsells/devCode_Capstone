@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Capstone</title>
     @{ 
-        ViewData["Theme"] = "Bootstrap.css";
+        ViewData["MainTheme"] = "Cyborg.css";
     }
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/@ViewData["Theme"]" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/@ViewData["MainTheme"]" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">

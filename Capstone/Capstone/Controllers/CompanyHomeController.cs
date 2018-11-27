@@ -246,8 +246,8 @@ namespace Capstone.Controllers
         public IActionResult HomePage(string id)
         {
             ViewData["CompanyId"] = id;
-            ViewData["Theme"] = "bootstrap.css";
             var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["Theme"] = company.Theme;
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             var image = _context.Images.Where(x => x.companyId == company.Id).FirstOrDefault();
             var jumbo = _context.HomeJumbos.Where(x => x.CompanyId == company.Id).FirstOrDefault();
@@ -300,99 +300,12 @@ namespace Capstone.Controllers
         }
 
 
-
-
-
-
-
-
-
-        public ActionResult Index(string id)
-        {
-            ViewData["Theme"] = "Cerulean.css";
-            return View();
-        }
-       
-
-        // GET: CompanyHome/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: CompanyHome/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CompanyHome/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CompanyHome/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CompanyHome/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CompanyHome/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CompanyHome/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
 
         public async Task<IActionResult> EditHomeContainer(string id, int divSection)
         {
-            ViewData["Theme"] = "bootstrap.css";
             var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["Theme"] = comp.Theme;
             var home = _context.HomePages.Where(x => x.CompanyId == id).FirstOrDefault();
             var container = _context.HomeContainers.Where(x => x.HomeId == home.Id).Where(x => x.DivSection == divSection).FirstOrDefault();
             HomePageViewModel ViewModel = new HomePageViewModel()
@@ -458,6 +371,14 @@ namespace Capstone.Controllers
             return RedirectToAction("HomePage", new { id = company.Id });
             
          
+        }
+
+        public IActionResult ChangeTheme(string theme)
+        {
+            var comp = _context.Companies.Where(x => x.CreatorId == User.Identity.GetUserId()).FirstOrDefault();
+            comp.Theme = theme;
+            _context.SaveChanges();
+            return RedirectToAction("HomePage", new { id = comp.Id });
         }
     }
 }

@@ -308,8 +308,8 @@ namespace Capstone.Controllers
     public IActionResult AboutPage(string id)
         {
             ViewData["CompanyId"] = id;
-            ViewData["Theme"] = "bootstrap.css";
             var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["Theme"] = company.Theme;
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
             Contact contact = new Contact() { NavTag = "none" };
@@ -358,76 +358,10 @@ namespace Capstone.Controllers
         return img;
     }
 
-
-
-
-
-
-
-
-
-    // GET: CompanyAbout
-    public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: CompanyAbout/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: CompanyAbout/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CompanyAbout/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CompanyAbout/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CompanyAbout/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         public async Task<IActionResult> EditAboutContainer(string id, int divSection)
         {
-            ViewData["Theme"] = "bootstrap.css";
             var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["Theme"] = comp.Theme;
             var about = _context.AboutPages.Where(x => x.CompanyId == id).FirstOrDefault();
             var container = _context.AboutContainers.Where(x => x.AboutId == about.Id).Where(x => x.DivSection == divSection).FirstOrDefault();
             AboutViewModel ViewModel = new AboutViewModel()

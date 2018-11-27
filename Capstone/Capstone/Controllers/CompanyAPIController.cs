@@ -25,6 +25,13 @@ namespace Capstone.Controllers
             return comp;
         }
 
+        [HttpGet]
+        [Route("api/Company/Index/{id}")]
+        public Company Index(string id)
+        {
+            var comp = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            return comp;
+        }
         [HttpPost]
         [Route("api/Company/Create")]
         public int Create(Company comp)

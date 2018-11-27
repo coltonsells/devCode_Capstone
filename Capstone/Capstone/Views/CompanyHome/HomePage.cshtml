@@ -25,7 +25,38 @@
 </div>
 @if (Model.Comp.CreatorId == Model.UserId)
 {
-    <button type="button" id="editMode" name="editMode">Edit Mode</button>
+
+    <button type="button" class="btn btn-danger" id="editMode" name="editMode">Edit Mode</button>
+    @if (Model.Comp.TwitterChoice == false || Model.Comp.MapChoice == false || Model.Comp.ScheduleChoice == false || Model.Comp.ContactChoice == false)
+    {
+        <button type="button" class="btn btn-danger" id="premium" name="premium"  onclick="location.href ='@Url.Action("PremiumCheck", "CreateSite", new { id = Model.Comp.Id})'">Go Premium</button>
+    }
+    <script>
+        function redirect(value) {
+
+            window.location.href = '/CompanyHome/ChangeTheme?theme=' + value
+        }
+    </script>
+    <select class="dropdown" style="display:none" id="theme" name="theme" onchange="redirect(this.value)">
+        <option>--Select--</option>
+        <option value="bootstrap.css">Basic</option>
+        <option value="Cerulean.css">Cerulean</option>
+        <option value="Cosmo.css">Cosmo</option>
+        <option value="Cyborg.css">Cyborg</option>
+        <option value="Darkly.css">Darkly</option>
+        <option value="Flatly.css">Flatly</option>
+        <option value="Journal.css">Journal</option>
+        <option value="Lumen.css">Lumen</option>
+        <option value="Paper.css">Paper</option>
+        <option value="Readable.css">Readable</option>
+        <option value="Sandstone.css">Sandstone</option>
+        <option value="Simplex.css">Simplex</option>
+        <option value="Slate.css">Slate</option>
+        <option value="Spacelab.css">Spacelab</option>
+        <option value="Superhero.css">Superhero</option>
+        <option value="United.css">Spacelab</option>
+        <option value="Yeti.css">Superhero</option>
+    </select>
 }
 <br />
 <div class="container">
@@ -129,6 +160,12 @@
                     for (i = 0; i < buttons.length; i++) {
                         buttons[i].style.display = "none";
                     }
+                }
+                if (document.getElementById("theme").style.display == "none") {
+                    document.getElementById("theme").style.display = "block";
+                }
+                else {
+                    document.getElementById("theme").style.display = "none";
                 }
 
             });

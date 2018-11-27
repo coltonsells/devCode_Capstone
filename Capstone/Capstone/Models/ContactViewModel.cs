@@ -11,5 +11,6 @@ namespace Capstone.Models
         public Contact Contact { get; set; }
         public ContactContainer Container { get; set; }
         public List<ContactContainer> Containers { get; set; }
+        public string UserId { get; set; }
     }
 }
