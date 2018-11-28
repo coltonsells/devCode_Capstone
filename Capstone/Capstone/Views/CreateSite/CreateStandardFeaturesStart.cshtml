@@ -4,60 +4,212 @@
     ViewData["Title"] = "CreateStandardFeaturesStart";
     //Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
+<script src="~/lib/jquery/dist/jquery.js"></script>
 
-<h2>CreateStandardFeatures</h2>
 
-<h4>StandardFeatures</h4>
+
+<h2>StandardFeatures</h2>
 <hr />
 @using (Html.BeginForm("CreateStandardFeaturesStart", "CreateSite", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-9" style="color:white;margin-left:12.50%;margin-right:12.50%;text-align:center">
             <form asp-action="CreateStandardFeatures">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div id="intro">
+                <div id="intro" style="margin-top:5%">
                     <h1>Let's Begin</h1>
-                    <p>
-                        first we need to decide what pages you want for your site. Let's start with the standard pages first. A home page is automatically included, but there are two
+                    <p style="font-size:x-large">
+                        First we need to decide what pages you want for your site. Let's start with the standard pages first. A home page is automatically included, but there are two
                         other pages as well. First is the About page. This is mainly used to inform your viewers a little more about your company and the people that make it up. This page
-                        can hold up to 9 elements of both Text and pictures as well. Special features can also be added later the bottom of the page. Would you like include an About page?
+                        can hold up to 6 elements of both Text and pictures as well. Special features can also be added later the bottom of the page. Would you like include an About page?
                     </p>
                 </div>
                 <div class="checkbox">
-                    <label>
+                    <label style="font-size:large">
                         <input asp-for="About" /> @Html.DisplayNameFor(model => model.About)
                     </label>
+                    <br />
+                    <button type="button" id="introContButton" class="btn btn-primary">Continue</button>
                 </div>
-                <div>
-                    <p>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div id="contact">
+                    <h2>Contact Page</h2>
+                    <p style="font-size:x-large">
                         Next we need to decide on a Contact page. Contact pages are useful for givin your viewers one or more methods of contacting you for questions or comments. The standard
                         Account only allows for basic information to be display in one element, however premium users can get more features added to this page. Would you like a contact page?
                     </p>
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
-                        <label>
+                        <label style="font-size:large">
                             <input asp-for="Contact" /> @Html.DisplayNameFor(model => model.Contact)
                         </label>
+                        <br />
+                        <button type="button" id="backIntroButton" class="btn btn-primary">Go Back</button>
+                        <button type="button" id="contactContButton" class="btn btn-primary">Continue</button>
+
                     </div>
                 </div>
-                <div>
-                    class="form-group>
-                    <p>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div id="picture">
+                    <h2>Main Picture</h2>
+                    <p style="font-size:x-large">
                         Finally, lets upload an image to your home page. This isn't necessary as we do provide a default image, however it is highly recommended. Multiple pictures can be added
                         later but for now lets just stick with your main image.
                     </p>
-                    <input type="file" name="file" value="file" class="btn btn-default" />
-
-
-
+                    <div class="form-group" style="margin-left:25%;margin-right:25%">
+                        <input type="file" name="file" value="file" class="btn btn-primary" />
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <button type="button" id="backContactButton" class="btn btn-primary">Go Back</button>
+                    <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
             </form>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
     </div>
 }
@@ -65,3 +217,62 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+<script>
+
+    $(document).ready(function () {
+        $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+
+    $("#introContButton").click(function () {
+        var el = document.getElementById("contact")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+    $("#backIntroButton").click(function () {
+        var el = document.getElementById("intro")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+    $("#contactContButton").click(function () {
+        var el = document.getElementById("picture")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+
+    $("#backContactButton").click(function () {
+        var el = document.getElementById("contact")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+</script>
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+</style>

@@ -3,17 +3,21 @@
     ViewData["Title"] = "PremiumFeatures";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/lib/jquery/dist/jquery.js"></script>
 
-<h2>PremiumFeatures</h2>
+<h2>Premium Features</h2>
 @using (Html.BeginForm())
 {
-<div class="container">
+<div class="container" style="text-align:center;color:white">
     <div>
-        <p>
+        <h3>
             Which Features do you want to add?
-        </p>
+        </h3>
     </div>
-    <div class="col-sm-4 form-group">
+    <br />
+    <br />
+    <br />
+    <div class="container col-sm-6" style="font-size:larger;margin-left:25%;margin-right:25%;background-image:url('/images/googlemaps.png');background-size:cover" id="maps">
         <h2>
             Google Maps
         </h2>
@@ -22,43 +26,317 @@
             maps features are also available including google street view.
         </p>
         <img />
-        <label asp-for="@Model.MapChoice" class="control-label"></label>
-        <input asp-for="@Model.MapChoice" class="form-control" />
-
+        <div class="form-group">
+            <label asp-for="@Model.MapChoice" class="control-label"></label>
+            <input asp-for="@Model.MapChoice" class="form-control" />
+            <button type="button" id="mapsContButton" class="btn btn-primary" style="margin-top:5%">Continue</button>
+        </div>
     </div>
-    <div class="col-sm-4 form-group">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="col-sm-6" style="font-size:larger;margin-left:25%;margin-right:25%;background-image:url('/images/twitter-bird-logo-pictures-0.png');background-size:cover" id="twitter">
         <h2>
             Twitter
         </h2>
         <p>
             Dispaly your twitter feed on your home, about, or contact pages.
         </p>
-        <img />
-        <label asp-for="@Model.TwitterChoice" class="control-label"></label>
-        <input asp-for="@Model.TwitterChoice" class="form-control" />
+        <div class="form-group">
+            <label asp-for="@Model.TwitterChoice" class="control-label"></label>
+            <input asp-for="@Model.TwitterChoice" class="form-control" />
+            <button type="button" id="mapsBackButton" class="btn btn-primary" style="margin-top:5%">Go Back</button>
+            <button type="button" id="twitterContButton" class="btn btn-primary" style="margin-top:5%">Continue</button>
+        </div>
     </div>
-    <div class="col-sm-4">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="col-sm-6" style="font-size:larger;margin-left:25%;margin-right:25%;background-image:url('/images/schedule.jpg');background-size:cover" id="scheduler">
         <h2>
             Scheduler
         </h2>
         <p>
             Allow your customers to schedule appointments based on your services.
         </p>
-        <img />
-        <label asp-for="@Model.ScheduleChoice" class="control-label"></label>
-        <input asp-for="@Model.ScheduleChoice" class="form-control" />
+        <div class="form-group">
+            <label asp-for="@Model.ScheduleChoice" class="control-label"></label>
+            <input asp-for="@Model.ScheduleChoice" class="form-control" />
+            <button type="button" id="twitterBackButton" class="btn btn-primary" style="margin-top:5%">Go Back</button>
+            <button type="button" id="scheduleContButton" class="btn btn-primary" style="margin-top:5%">Continue</button>
+        </div>
     </div>
-    <div class="col-sm-4">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="col-sm-6" style="font-size:larger;margin-left:25%;margin-right:25%;background-image:url('/images/contact.jpg');background-size:cover" id="email">
         <h2>
             Contact
         </h2>
         <p>
             Allow your customers to contact you via email.
         </p>
-        <img />
-        <label asp-for="@Model.ContactChoice" class="control-label"></label>
-        <input asp-for="@Model.ContactChoice" class="form-control" />
+        <div class="form-group">
+            <label asp-for="@Model.ContactChoice" class="control-label"></label>
+            <input asp-for="@Model.ContactChoice" class="form-control" />
+            <button type="button" id="scheduleBackButton" class="btn btn-primary" style="margin-top:5%">Go Back</button>
+            <input type="submit" value="Finish" class="btn btn-primary" style="margin-top:5%" />
+        </div>
     </div>
-    <input type="submit" value="Finish" />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
 </div>
 }
+<script>
+
+    $(document).ready(function () {
+        $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+
+    $("#mapsContButton").click(function () {
+        var el = document.getElementById("twitter")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+    $("#twitterContButton").click(function () {
+        var el = document.getElementById("scheduler")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+    $("#twitterBackButton").click(function () {
+        var el = document.getElementById("twitter")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+    $("#mapsBackButton").click(function () {
+        var el = document.getElementById("maps")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+    $("#scheduleContButton").click(function () {
+        var el = document.getElementById("email")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+
+    $("#scheduleBackButton").click(function () {
+        var el = document.getElementById("scheduler")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+</script>
+<style>
+    body {
+        overflow: hidden;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+</style>

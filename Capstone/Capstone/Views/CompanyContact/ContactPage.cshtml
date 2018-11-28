@@ -12,7 +12,7 @@
 
 }@if (Model.Comp.CreatorId == Model.UserId)
 {
-    <h2><button type="button" id="editMode">Edit Mode</button></h2>
+    <div><button class="btn btn-primary" type="button" id="editMode">Edit Mode</button></div>
 }
 
     <div class="container">
@@ -31,7 +31,7 @@
                     {
                         <div class="col-sm-12" style="white-space:pre-line;background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font">@cont.Text</div>
                     }
-                    <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditContactContainer", "CompanyContact", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
+                    <button class="editButton btn btn-primary" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditContactContainer", "CompanyContact", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
 
                 }
             }
@@ -40,13 +40,21 @@
         {
             @if (Model.Comp.ScheduleChoice)
             {
-                <div class="@bootstrap">
-                    <label class="control-label">Name</label>
-                    <input type="text" name="name" />
-                    <label class="control-label">Comments</label>
-                    <textarea name="comments"></textarea>
+                <div class="@bootstrap" style="background-color:lightslategray">
+                    <h4>
+                        Send Email
+                    </h4>
+                    <div>
+                        <label class="control-label">Name</label>
+                        <input type="text" name="name" />
+                    </div>
+                    <div>
+                        <label class="control-label">Comments</label>
+                        <textarea name="comments" rows="8" style="width:100%"></textarea>
+                    </div>
+                    
                     @Html.HiddenFor(x => x.Comp.Id)
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
 
                 </div>
             }

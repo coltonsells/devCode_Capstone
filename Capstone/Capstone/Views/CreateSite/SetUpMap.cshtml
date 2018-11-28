@@ -4,15 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SetUpMap</h2>
+<h2>Setup Map</h2>
 @using (Html.BeginForm())
 {
-<div class="container">
-    <div>
+<div class="container" style="color:white;text-align:center">
+    <div class="col-md-6" style="font-size:larger;margin-left:25%;margin-right:25%">
         <p>
-            Use current company address<br />
-            or<br />
-            Enter the address you want to appear on your map
+            
+            Enter the address you want to appear on your map<br />
             <label asp-for="@Model.Comp.Street" class="control-label"></label>
             <input asp-for="@Model.Comp.Street" class="form-control" />
             <label asp-for="@Model.Comp.City" class="control-label"></label>
@@ -21,25 +20,30 @@
             <input asp-for="@Model.Comp.State" class="form-control" />
             <label asp-for="@Model.Comp.Zip" class="control-label"></label>
             <input asp-for="@Model.Comp.Zip" class="form-control" />
-            @Html.HiddenFor(x => x.Comp.Id);
-            @Html.HiddenFor(x => x.Home.Id);
+            @Html.HiddenFor(x => x.Comp.Id)
+            @Html.HiddenFor(x => x.Home.Id)
             
-                @Html.HiddenFor(x => x.About.Id);
+                @Html.HiddenFor(x => x.About.Id)
            
-                @Html.HiddenFor(x => x.Contact.Id);
+                @Html.HiddenFor(x => x.Contact.Id)
             
         </p>
     </div>
     <div>
         Which pages do you want to place a map on?
     </div>
-    <div>
-        <label class="control-label">Home</label>
-        <input asp-for="@Model.Home.Maps" class="form-control" />
+    <div class="row">
+        <div>
+            <label class="control-label">Home</label>
+            <input style="display:inline" asp-for="@Model.Home.Maps" class="form-control" />
+        </div>
+
         @if (Model.Comp.About)
         {
+        <div>
             <label asp-for="@Model.Comp.About" class="control-label"></label>
             <input asp-for="@Model.About.Maps" class="form-control" />
+        </div>
         }
       
     </div>

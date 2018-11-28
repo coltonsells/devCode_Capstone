@@ -4,49 +4,52 @@
     //Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
 
-<h2>InitialSetup</h2>
+<h2>Initial Setup</h2>
 @using (Html.BeginForm())
 {
-<div class="container">
+<div class="container" style="text-align:center;color:white">
     <div id="intro">
-        <p>
-            ALright lets get the layout of your home page set up
-        </p>
+        <h2>
+            Alright lets get the layout of your home page setup
+        </h2>
     </div>
     <div id="navTag">
-        <p>
+        <h6>
             First, what would you like your home page to be called on your navBar (Usually the name of your company?)
+            <br />
+            <br />
             <div>
-                <input type="text" name="navTag" />
+                <input style="color:black" type="text" name="navTag" />
             </div>
-        </p>
+        </h6>
     </div>
     <div id="picText">
-        <p>
+        <h6>
             Next we will add your picture to the front page jumbotron. What text would you like to appear over your picture?
+        </h6>
             <div>
-                <textarea type="text" name="picText"></textarea>
+                <textarea type="text" name="picText" rows="10" cols="50" style="color:black"></textarea>
             </div>
-        </p>
+ 
     </div>
     <div id="jumboTextAlign">
-        <p>
+        <h6>
             How would you like that text aligned?
-            <div class="form-control">
-                <select class="form-control" id="jumboTextAlignment" name="jumboTextAlignment">
-                    <option>--Select--</option>
-                    <option>Left</option>
-                    <option>Right</option>
-                    <option>Center</option>
-                </select>
-            </div>
-        </p>
+        </h6>
+        <div class="col-md-6" style="margin-right:25%;margin-left:25%">
+            <select class="form-control" id="jumboTextAlignment" name="jumboTextAlignment">
+                <option>--Select--</option>
+                <option>Left</option>
+                <option>Right</option>
+                <option>Center</option>
+            </select>
+        </div>
     </div>
     <div id="jumboTextFont">
-        <p>
+        <h6>
             What font would you like?
-        </p>
-        <div class="form-control">
+        </h6>
+        <div class="col-md-6" style="margin-right:25%;margin-left:25%">
             <select class="form-control" id="jumboTextFont" name="jumboTextFont">
                 <option>--Select--</option>
                 <option>Times New Roman</option>
@@ -56,8 +59,8 @@
         </div>
     </div>
     <div id="jumboColor">
-        <p>What color do you want the text to be</p>
-        <div class="form-control">
+        <h6>What color do you want the text to be</h6>
+        <div class="col-md-6" style="margin-right:25%;margin-left:25%">
             <select class="form-control" id="jumboColor" name="jumboColor">
                 <option>--Select--</option>
                 <option>White</option>
@@ -68,8 +71,8 @@
         </div>
     </div>
     <div id="jumboTextSize">
-        <p>Finally, what size do you want the text to be</p>
-        <div class="form-control">
+        <h6>Finally, what size do you want the text to be</h6>
+        <div class="col-md-6" style="margin-right:25%;margin-left:25%">
             <select class="form-control" id="jumboTextSize" name="jumboTextSize">
                 <option>--Select--</option>
                 <option>small</option>
@@ -83,6 +86,8 @@
         </div>
     </div>
     <div>
+        <br />
+        <br />
         <input type="submit" class="btn btn-primary" />
     </div>
 </div>

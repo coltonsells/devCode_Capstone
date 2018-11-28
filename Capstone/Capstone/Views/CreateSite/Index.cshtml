@@ -6,81 +6,263 @@
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <h2>Index</h2>
 <style>
-    html{
+    html {
         scroll-behavior: smooth;
     }
 </style>
-@using (Html.BeginForm()){
+@using (Html.BeginForm())
+{
 
-<div class="container">
-    <div id="compName">
-        <h3>First lets get some basic information for your company</h3>
-        <p>
-            What is your company's name?
-        </p>
-        <input asp-for="@Model.Name" class="form-control" /><br />
-        <button id="compNameCont"  type="button" class="btn btn-primary" onclick='location.href="#compAddress"'>Continue</button>
-    </div>
-  
-
-    <div id="compAddress" style="display:none">
-        <p>
-            Where is your company located?
-        <p>
-            <label asp-for="@Model.Street" class="control-label"></label>
-            <input asp-for="@Model.Street" class="form-control" />
-            <label asp-for="@Model.City" class="control-label"></label>
-            <input asp-for="@Model.City" class="form-control" />
-            <label asp-for="@Model.State" class="control-label"></label>
-            <input asp-for="@Model.State" class="form-control" />
-            <label asp-for="@Model.Zip" class="control-label"></label>
-            <input asp-for="@Model.Zip" class="form-control" /><br />
-            <button id="compAddressCont" type="button" class="btn btn-primary" onclick='location.href="#compType"'>Continue</button>
-            <button id="goBackName" type="button" class="btn btn-primary" onclick='location.href="#compName"'>Go Back</button>
-        </p>
-    </div>
-  
-    <div id="compType" style="display:none">
-        <p>
-            What type of company is it?
-        </p>
-        <div>
-            @Html.DropDownListFor(model => model.Type, new List<SelectListItem>
-       {
-           new SelectListItem{Text = "--Select--", Value = null},
-           new SelectListItem{Text = "Retail", Value = "Retail"},
-           new SelectListItem{Text = "Service", Value = "Service" },
-           new SelectListItem{Text = "Entertainment", Value = "Entertainment" },
-           new SelectListItem{Text = "Maunfacturing", Value = "Manufacturing" },
-       })
+    <div class="container">
+        <div id="compName" style="text-align:center;margin-top:30%">
+            <h3>First lets get some basic information for your company</h3>
+            <h4 style="color:white">
+                What is your company's name?
+            </h4>
+            <div class="col-md-6" style="margin-left:25%;margin-right:25%">
+                <input style="text-align:center" asp-for="@Model.Name" class="form-control" /><br />
+                <button id="compNameCont" type="button" style="margin-right:37.5%;margin-left:37.5%" class="col-sm-3 btn btn-primary text-center">Continue</button>
+            </div>
         </div>
-        
-       <button id="goBackAddress" type="button" class="btn btn-primary" onclick='location.href="#compAddress"'>Go Back</button>
-       <button id="finished" type="submit" class="btn btn-primary">Done</button>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div id="compAddress" style="color:white">
+            <h3 style="margin-left:25%">
+                Where is your company located?
+             </h3>
+            <p class="col-md-6" style="margin-left:25%;margin-right:25%">
+                <label asp-for="@Model.Street" class="control-label"></label>
+                <input asp-for="@Model.Street" class="form-control" />
+                <label asp-for="@Model.City" class="control-label"></label>
+                <input asp-for="@Model.City" class="form-control" />
+                <label asp-for="@Model.State" class="control-label"></label>
+                <input asp-for="@Model.State" class="form-control" />
+                <label asp-for="@Model.Zip" class="control-label"></label>
+                <input asp-for="@Model.Zip" class="form-control" /><br />
+                <button id="compAddressCont" type="button" class="btn btn-primary">Continue</button>
+                <button id="goBackName" type="button" class="btn btn-primary">Go Back</button>
+            </p>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div id="compType">
+            <h3 class="col-md-6"style="margin-left:25%;margin-right:25%;color:white">
+                What type of company is it?
+            </h3>
+            <div class="col-md-6" style="margin-left:25%;margin-right:25%">
+                @Html.DropDownListFor(model => model.Type, new List<SelectListItem>
+           {
+               new SelectListItem{Text = "--Select--", Value = null},
+               new SelectListItem{Text = "Retail", Value = "Retail"},
+               new SelectListItem{Text = "Service", Value = "Service" },
+               new SelectListItem{Text = "Entertainment", Value = "Entertainment" },
+               new SelectListItem{Text = "Maunfacturing", Value = "Manufacturing" },
+
+           })
+            <div style="margin-top:5%">
+            <button id="goBackAddress" type="button" class="btn btn-primary">Go Back</button>
+            <button id="finished" type="submit" class="btn btn-primary">Done</button>
+            </div>
+            </div>
+
+           
+        </div>
     </div>
-</div>
 }
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 <script>
+
+    $(document).ready(function () {
+        $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+
     $("#compNameCont").click(function () {
-        $("#compName").hide();
-        $("#compAddress").show();
+        var el = document.getElementById("compAddress")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
     });
 
     $("#goBackName").click(function () {
-        $("#compAddress").hide();
-        $("#compName").show();
+        var el = document.getElementById("compName")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
     });
 
     $("#compAddressCont").click(function () {
-        $("#compAddress").hide();
-        $("#compType").show();
+        var el = document.getElementById("compType")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
     });
+
 
     $("#goBackAddress").click(function () {
-        $("#compType").hide();
-        $("#compAddress").show();
+        var el = document.getElementById("compAddress")
+        el.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'
+        });
     });
 
-
 </script>
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>

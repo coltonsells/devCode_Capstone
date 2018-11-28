@@ -9,40 +9,41 @@
     <div class="container">
         <div class="row" style="display:inline">
             <div class="col-sm-2">
+                <input type="text" name="UserInput" style="margin-top:20%" placeholder="Search" />
+                <input type="submit" class="btn btn-primary" style="visibility:hidden" />
                 <div class="form-group">
-                    <h4>Retail</h4>
-                    <input type="checkbox" name="filterRetail"  />
+                    <input style="display:inline" type="checkbox" name="filterRetail" />
+                    <h5 style="display:inline">Retail</h5>
                 </div>
                 <div class="form-group">
-                    <h4>Service</h4>
-                    <input type="checkbox" name="filterService" />
+                    <input style="display:inline" type="checkbox" name="filterService" />
+                    <h5 style="display:inline">Service</h5>
                 </div>
                 <div class="form-group">
-                    <h4>Entertainment</h4>
-                    <input type="checkbox" name="filterEntertainment" />
+                    <input style="display:inline" type="checkbox" name="filterEntertainment" />
+                    <h5 style="display:inline">Entertainment</h5>
                 </div>
                 <div class="form-group">
-                    <h4>Manufacturing</h4>
-                    <input type="checkbox" class="checkbox" name="filteredManufacturing" />
+                    <input style="display:inline" type="checkbox" class="checkbox" name="filteredManufacturing" />
+                    <h5 style="display:inline">Manufacturing</h5>
                 </div>
 
             </div>
-            <div class="col-sm-10">
-                <input type="text" name="UserInput" />
-                <input type="submit" class="btn" />
-            </div>
-
-            @{
-                foreach (var comp in Model.Companies)
-                {
-                    HomePageViewModel vm = new HomePageViewModel();
-                    vm.Comp = comp;
-                    vm.Image = Model.Images.Where(x => x.companyId == comp.Id).FirstOrDefault();
-                    <div class="col-sm-4" style="margin-bottom:3%">
-                        @Html.Partial("WebsiteSummary", vm)
-                    </div>
+            <div class="col-sm-10" style="border-left:solid;border-left-color:white">
+                @{
+                    foreach (var comp in Model.Companies)
+                    {
+                        HomePageViewModel vm = new HomePageViewModel();
+                        vm.Comp = comp;
+                        vm.Image = Model.Images.Where(x => x.companyId == comp.Id).FirstOrDefault();
+                        <div class="col-sm-4" style="margin-bottom:3%">
+                            @Html.Partial("WebsiteSummary", vm)
+                        </div>
+                    }
                 }
-            }
+            </div>
+
+           
         </div>
     </div>
 

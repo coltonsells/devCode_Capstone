@@ -3,8 +3,7 @@
     ViewData["Title"] = "EditAboutContainer";
     Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
-
-<h2>EditHomeContainer</h2>
+<h2>Edit Content</h2>
 
 @{
     var number = Model.Container.DivSection.ToString();
@@ -176,7 +175,7 @@
     @Html.HiddenFor(x => x.Container.Id)
     @Html.HiddenFor(x => x.Comp.Id)
     @Html.HiddenFor(x => x.Container.DivSection)
-    <div>
+    <div style="margin-top:3%">
         <input type="submit" class="btn btn-primary" />
     </div>
 }

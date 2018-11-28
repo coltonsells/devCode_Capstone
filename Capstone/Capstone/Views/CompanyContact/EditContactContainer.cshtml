@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
 
-<h2>EditContactContainer</h2>
+<h2>Edit Container</h2>
 
 @{
     var number = Model.Container.DivSection.ToString();
@@ -177,7 +177,7 @@
     @Html.HiddenFor(x => x.Comp.Id)
     @Html.HiddenFor(x => x.Container.DivSection)
     <div>
-        <input type="submit" class="btn btn-primary" />
+        <input type="submit" style="margin-top:3%" class="btn btn-primary" />
     </div>
 }
 <script src="~/lib/jquery/dist/jquery.js"></script>

@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
 
-<h2>CompanyView</h2>
+<h2>Scheduled @Model.Scheduler.Type</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -21,7 +19,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Event.LastName)
-            </th>d
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Event.Notes)
             </th>
@@ -43,9 +41,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
-            <td>
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+           
         </tr>
 }
     </tbody>

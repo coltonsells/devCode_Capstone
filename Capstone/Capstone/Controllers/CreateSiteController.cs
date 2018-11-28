@@ -356,7 +356,7 @@ namespace Capstone.Controllers
             sched.NavTag = form["navTag"];
             sched.Type = form["Type"];
             _context.SaveChanges();
-            if(comp.SetupComplete = true)
+            if(comp.SetupComplete == true)
             {
                 return RedirectToAction("HomePage", "CompanyHome", new { id = comp.Id});
             }

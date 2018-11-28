@@ -5,31 +5,32 @@
 }
 @using (Html.BeginForm())
 {
-<h2>SetUpTwitter</h2>
+<h2>Setup Twitter</h2>
 
-<div class="container">
-    <div>
-        <h2>
-            Enter you Titter handle below
-        </h2>
+<div class="container" style="color:white;text-align:center">
+    <div class="col-md-6" style="font-size:larger;margin-left:25%;margin-right:25%">
+        <div>
+            <h2>
+                Enter you Twitter handle below
+            </h2>
+        </div>
+        <div>
+            <label asp-for="@Model.Comp.Twitter" class="control-label"></label>
+            <input style="text-align:center" asp-for="@Model.Comp.Twitter" class="form-control" />
+        </div>
+        <div>
+            @Html.HiddenFor(x => x.Comp.Id)
+            @Html.HiddenFor(x => x.Home.Id)
+            @if (Model.Comp.About)
+            {
+                @Html.HiddenFor(x => x.About.Id)
+            }
+        </div>
     </div>
     <div>
-        <label asp-for="@Model.Comp.Twitter" class="control-label"></label>
-        <input asp-for="@Model.Comp.Twitter" class="form-control" />
-    </div>
-    <div>
-        @Html.HiddenFor(x => x.Comp.Id)
-        @Html.HiddenFor(x => x.Home.Id)
-        @if (Model.Comp.About)
-        {
-            @Html.HiddenFor(x => x.About.Id)
-        }
-        <button type="submit" class="btn btn-primary">Continue</button>
-    </div>
-    <div>
-        <p>
+        <h5  style="margin-top:10%">
             Which pages do you want to display your Twitter feed.
-        </p>
+        </h5>
         <label class="control-label">Home</label>
         <input asp-for="@Model.Home.Twitter" class="form-control" />
         @if (Model.Comp.About)

@@ -34,9 +34,13 @@ namespace Capstone.Controllers
                     return RedirectToAction("AccessDenied", new { id = comp.Id});
                 }
             }
-            else
+            else if(User.IsInRole("Customer"))
             {
                 return RedirectToAction("CustomerView", new { id = comp.Id});
+            }
+            else
+            {
+                return RedirectToAction("AccessDenied", new { id = comp.Id });
             }
         }
 
@@ -69,7 +73,9 @@ namespace Capstone.Controllers
             SchedulerViewModel ViewModel = new SchedulerViewModel()
             {
                 Comp = company,
-                Events = events
+                Events = events,
+                Scheduler = sched
+                
             };
             return View(ViewModel);
         }
@@ -83,6 +89,7 @@ namespace Capstone.Controllers
         {
             ViewData["CompanyId"] = id;
             var company = _context.Companies.Where(x => x.Id == id).FirstOrDefault();
+            ViewData["Theme"] = company.Theme;
             var home = _context.HomePages.Where(x => x.CompanyId == company.Id).FirstOrDefault();
             About about = new About() { NavTag = "none" };
             Contact contact = new Contact() { NavTag = "none" };

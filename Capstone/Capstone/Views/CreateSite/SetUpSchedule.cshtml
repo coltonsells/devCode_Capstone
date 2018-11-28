@@ -5,20 +5,27 @@
 }
 @using (Html.BeginForm())
 {
-<h2>SetUpSchedule</h2>
-<div class="container">
+<h2>Scheduler</h2>
+<div class="container" style="color:white;text-align:center">
+
     <div>
-        Customers can now schedule appointments with you.
+        <h5>
+            Customers can now schedule appointments with you.
+        </h5>
     </div>
-    <div>
-        First, What would you like to the name of the schedule page to appear on your navbar as?
-        <input type="text" name="navTag" />
+    <div style="margin-top:5%">
+        <h8>
+            First, What would you like to the name of the schedule page to appear on your navbar as?<br />
+        </h8>
+        <input style="color:black" type="text" name="navTag" />
     </div>
-    <div>
-        Next, what type of appointments will the customer be scheduling?
-        <input type="text" name="Type" />
+    <div style="margin-top:5%">
+        <h8>
+            Next, what type of appointments will the customer be scheduling?<br />
+        </h8>
+        <input style="color:black" type="text" name="Type" />
     </div>
-    <div>
+    <div style="margin-top:5%">
         @Html.HiddenFor(x => x.Scheduler.Id)
         @Html.HiddenFor(x => x.Comp.Id)
         <input type="submit" class="btn btn-primary"/>

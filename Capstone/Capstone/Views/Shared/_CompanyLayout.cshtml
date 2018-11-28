@@ -26,7 +26,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="@ViewData["CompanyId"]"class="navbar-brand">Capstone</a>
+                @if (User.IsInRole("Company Account"))
+                {
+                    <a asp-area="" asp-controller="Home" asp-action="Index" asp-route-id="@ViewData["CompanyId"]" class="navbar-brand">Build It</a>
+                }
+                else if (User.IsInRole("Customer"))
+                {
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Build It</a>
+                }
+                else
+                {
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Build It</a>
+                }
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

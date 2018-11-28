@@ -4,17 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ContactContainerContent</h2>
+<h2>Contact Container Content</h2>
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
 
 @using (Html.BeginForm("ContactContainerContent", "CompanyContact", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
-    <div class="container">
-        <div>
-            <p>
+    <div class="container" style="color:white">
+        <div style="text-align:center">
+            <h3>
                 Here you can enter the content for the containers
-            </p>
+            </h3>
         </div>
         <div>
             @{
@@ -137,3 +137,8 @@
     </div>
 }
 <script src="~/lib/jquery/dist/jquery.js"></script>
+<style>
+    textarea{
+        color:black;
+    }
+</style>

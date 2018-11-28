@@ -4,24 +4,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AboutInitialSetup</h2>
+<h2>About Setup</h2>
 @using (Html.BeginForm())
 {
-    <div class="container">
+    <div class="container" style="color:white;text-align:center">
         <div id="intro">
-            <p>
-                ALright lets get the layout of your About page set up
-            </p>
+            <h3>
+                Alright lets get the layout of your About page set up
+            </h3>
         </div>
         <div id="navTag">
-            <p>
+            <h6>
                 First, what would you like your About page to be called on your navBar?
-                <div class="form-control">
-                    <input type="text" name="navTag" />
-                </div>
-            </p>
+            </h6>
+            <div class="col-md-6" style="margin-left:25%;margin-right:25%">
+                <input style="color:black;text-align:center" type="text" name="navTag" />
+            </div>
         </div>
-        <div>
+        <div style="margin-top:5%">
             <input type="submit" class="btn btn-primary" />
         </div>
     </div>

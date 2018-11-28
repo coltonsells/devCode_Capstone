@@ -26,10 +26,10 @@
 @if (Model.Comp.CreatorId == Model.UserId)
 {
 
-    <button type="button" class="btn btn-danger" id="editMode" name="editMode">Edit Mode</button>
+    <button type="button" class="btn btn-primary" id="editMode" name="editMode">Edit Mode</button>
     @if (Model.Comp.TwitterChoice == false || Model.Comp.MapChoice == false || Model.Comp.ScheduleChoice == false || Model.Comp.ContactChoice == false)
     {
-        <button type="button" class="btn btn-danger" id="premium" name="premium"  onclick="location.href ='@Url.Action("PremiumCheck", "CreateSite", new { id = Model.Comp.Id})'">Go Premium</button>
+        <button type="button" class="btn btn-primary" id="premium" name="premium"  onclick="location.href ='@Url.Action("PremiumCheck", "CreateSite", new { id = Model.Comp.Id})'">Go Premium</button>
     }
     <script>
         function redirect(value) {
@@ -37,7 +37,7 @@
             window.location.href = '/CompanyHome/ChangeTheme?theme=' + value
         }
     </script>
-    <select class="dropdown" style="display:none" id="theme" name="theme" onchange="redirect(this.value)">
+    <select class="dropdown" style="display:none;color:black" id="theme" name="theme" onchange="redirect(this.value)">
         <option>--Select--</option>
         <option value="bootstrap.css">Basic</option>
         <option value="Cerulean.css">Cerulean</option>
@@ -114,7 +114,7 @@
 
                     <div class="@bootContainers" style="background-color:@cont.BgColor;text-align:@cont.Align;color:@cont.Color;font-size:@cont.FontSize;font-family:@cont.Font"><span style="white-space: pre-line">@cont.Text</span></div>
                 }
-                <button class="editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditHomeContainer", "CompanyHome", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
+                <button class="btn btn-primary editButton" style="display:none" id="@cont.DivSection" onclick="location.href ='@Url.Action("EditHomeContainer", "CompanyHome", new { id = Model.Comp.Id, divSection = cont.DivSection})'">Edit</button>
             }
         }
     </div>

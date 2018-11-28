@@ -4,20 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ContactContainerSetup</h2>
+<h2>Contact Container Setup</h2>
 
 @using (Html.BeginForm())
 {
 
 
     <div class="container">
-        <div class="row">
-            <p>
+        <div class="row" style="text-align:center;color:white">
+            <h3>
                 Now let's set up the content of your Contact Page
-            </p>
-            <p>
+            </h3>
+            <h6>
                 Contact Pages can have up to three rows. The containers will take up the entire width of the page. How many containers do you want?
-            </p>
+            </h6>
         </div>
         <button type="submit" class="btn col-sm-12" id="paragraph" name="container" value="1" style="background:none">
             <div id="oneParagraph" class="row">

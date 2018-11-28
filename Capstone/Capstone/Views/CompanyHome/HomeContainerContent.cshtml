@@ -5,14 +5,13 @@
 }
 <script src="~/lib/jquery/dist/jquery.js"></script>
 
-<h2>HomeContainerContent</h2>
 @using (Html.BeginForm("HomeContainerContent", "CompanyHome", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
-<div class="container">
-    <div>
-        <p>
+<div class="container" style="color:white">
+    <div style="text-align:center;margin-top:10%;margin-bottom:10%">
+        <h2>
             Here you can enter the content for the containers
-        </p>
+        </h2>
     </div>
     <div>
         @{
@@ -189,3 +188,8 @@
 </div>
 }
 <script src="~/lib/jquery/dist/jquery.js"></script>
+<style>
+   textarea{
+       color:black
+   }
+</style>

@@ -4,17 +4,29 @@
     //Layout = "~/Views/Shared/_CompanyLayout.cshtml";
 }
 
-<h2>PremiumCheck</h2>
-
-<div class="container">
-    <div>
+<div class="container" style="color:white">
+    <div style="text-align:center">
         <h1>
-            Premium
+            Go Premium!
         </h1>
-        <p>Premium features allow you to add even more customization to your website</p>
+        <p style="font-size:larger;color:white">Premium features allow you to add even more customization to your website</p>
+        <div>
+            <p>
+                Premium Features: $10.00
+            </p>
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetCharge", "CreateSite")'">GO PREMIUM</button>
+            @if (Model.SetupComplete)
+            {
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("HomePage", "CompanyHome", new { id = Model.Id })'">no thanks</button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-primary" onclick="location.href ='@Url.Action("InitialSetup", "CompanyHome")'">no thanks</button>
+            }
+        </div>
     </div>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-3" style="text-align:center;font-size:larger">
             <h2>
                 Google Maps
             </h2>
@@ -22,46 +34,37 @@
                 The google maps feature allows you to display your location on your home, about, and contact pages via Google Maps. Familiar google
                 maps features are also available including google street view.
             </p>
-            <img />
+            <img src="~/images/Google-Maps.jpg" style="width:100%"/>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3" style="text-align:center;font-size:larger">
             <h2>
                 Twitter
             </h2>
             <p>
-                Dispaly your twitter feed on your home, about, or contact pages.
+                Display your twitter feed on your home, about, or contact pages.
             </p>
-            <img />
+            <img src="~/images/twitter-bird-logo-pictures-0.png" height="200"style="width:100%"/>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3" style="text-align:center;font-size:larger">
             <h2>
                 Scheduler
             </h2>
             <p>
                 Allow your customers to schedule appointments based on your services.
             </p>
-            <img />
+            <img src="~/images/rawpixel-633847-unsplash.jpg" style="width:100%" />
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3" style="text-align:center;font-size:larger">
             <h2>
                 Email
             </h2>
             <p>
-               Allow customers to send feedback via email on your contact page.
+                Allow customers to send feedback via email on your contact page.
             </p>
-            <img />
+            <img src="~/images/florian-klauer-489-unsplash.jpg" style="width:100%" />
         </div>
-        <p>
-            Premium Features: $10.00
-        </p>
-        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetCharge", "CreateSite")'">GO PREMIUM</button>
-        @if (Model.SetupComplete)
-        {
-            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("HomePage", "CompanyHome", new { id = Model.Id })'">no thanks</button>
-        }
-        else
-        {
-            <button type="button" class="btn btn-primary" onclick="location.href ='@Url.Action("InitialSetup", "CompanyHome")'">no thanks</button>
-        }
+       
     </div>
 </div>
+
+ 
