@@ -15,9 +15,9 @@
         }
 
     }*@
-<div class="container not" id="firstCont" style="text-align:center;margin-top:5%;background-color:white">
+<div class="container not"  style="text-align:center;margin-top:5%;background-color:lightgray">
     <div>
-        <img src="~/images/logo_transparent.png" style="height:600px" />
+        <img src="~/images/logo_transparent.png" style="height:600px" id="animate-area" />
     </div>
 </div>
 <div class="container not" id="firstCont" style="text-align:center;background-image:url('images/home1.jpg'); height: 600px; background-size:cover">
@@ -60,6 +60,29 @@
         -o-transition: all 1s ease;
         transition: all 1s ease;
     }
+
+   #animate-area {
+	animation-name: fade;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-duration: 5s;
+	animation-direction: alternate;
+}
+
+@@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+	25% {
+		opacity: 0;
+	}
+	75% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
 </style>
 <script src="~/js/site.js"></script>
 
